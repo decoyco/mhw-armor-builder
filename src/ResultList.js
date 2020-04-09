@@ -5,10 +5,13 @@ export default function ResultList(props) {
         results
     } = props
     return (
-        <div>
-            {results.map(equipment =>{
-                return <div key={equipment.name}>{equipment.name}</div>
-            })}
-        </div>
+        <>
+            {
+                results.map(equipment =>
+                (
+                    <div key={equipment.name}>{equipment.name}</div>
+                ))
+            }
+        </>
     )
 }
