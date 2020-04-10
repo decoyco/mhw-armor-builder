@@ -2,7 +2,11 @@ import React, {useState} from 'react'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils'
 
 export default function TypeSelect(props) {
-    const {setType, setUrlModifier} = props
+    const {
+        setTypeQuery,
+        setType, 
+        setUrlModifier
+    } = props
     function handleOnChange(e)
     {
         let type
@@ -20,10 +24,10 @@ export default function TypeSelect(props) {
         {
             type="charms"
         }
-        console.log("value:" + e.target.value)
-        console.log("type:" + type)
+        const query = '"type":' + '"' + e.target.value + '"'
         setUrlModifier(type)
         setType(e.target.value)
+        setTypeQuery(query)
     }
     return (
         <>

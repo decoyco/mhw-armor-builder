@@ -6,13 +6,16 @@ import axios from 'axios'
 
 function App() {
   const BASE_URL = 'https://mhw-db.com/'
+  const [loading, setLoading] = useState(false)
   const [results, setResults] = useState([])
   const [type, setType] = useState(['head'])
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() =>
   {
+    setLoading(true)
     let cancel
     const newUrl = BASE_URL + urlModifier
     setSearchUrl(newUrl)
@@ -20,13 +23,13 @@ function App() {
     {
       method:'GET',
       url: newUrl,
-      params: {q: '{"defense.base":{"$gt":0}}'},
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res => {
       setResults(res.data)
       console.log(res.data)
     })
+    .then(()=> setLoading(false))
     //catching errors, including checking for cancelled search
     .catch(e => {
         if(axios.isCancel(e)) return
@@ -36,6 +39,7 @@ function App() {
 
   useEffect(() =>
   {
+    setLoading(true)
     let cancel
     const newUrl = BASE_URL + urlModifier
     setSearchUrl(newUrl)
@@ -43,30 +47,36 @@ function App() {
     {
       method:'GET',
       url: newUrl,
-      params: {q: '{"type":"' + type + '"}'},
+      params: {q: searchQuery },
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res => {
       setResults(res.data)
       console.log(results)
     })
+    .then(()=>setLoading(false))
     //catching errors, including checking for cancelled search
     .catch(e => {
         if(axios.isCancel(e)) return
     })
     return () => cancel()
-  }, [type])
+  }, [type, searchQuery])
 
   return (
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <SearchBar
+        urlModifier={urlModifier}
         setType={setType} 
         setUrlModifier={setUrlModifier}
+        setSearchQuery={setSearchQuery}
       />
-      <ResultList 
-        results={results} 
-      />
+      {
+        loading ? <div>Loading...</div> :
+        <ResultList 
+          results={results} 
+        />
+      }
       
     </>
   );
