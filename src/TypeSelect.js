@@ -6,20 +6,22 @@ export default function TypeSelect(props) {
     function handleOnChange(e)
     {
         let type
-        if(e.target.value==="head" && e.target.value==="chest" && e.target.value==="gloves" && e.target.value==="waist" && e.target.value==="legs")
+        if(e.target.value==="head" || e.target.value==="chest" || e.target.value==="gloves" || e.target.value==="waist" || e.target.value==="legs")
         {
             type="armor"
         }
-        else if (e.target.value==="great-sword" && e.target.value==="long-sword" && e.target.value==="sword-and-shield" && e.target.value==="dual-blades" && e.target.value==="hammer"
-                && e.target.value==="hunting-horn" && e.target.value==="lance" && e.target.value==="gunlance" && e.target.value==="switch-axe" && e.target.value==="charge-blade"
-                && e.target.value==="head" && e.target.value==="insect-glaive" && e.target.value==="light-bowgun" && e.target.value==="heavy-bowgun" && e.target.value==="bow")
+        else if (e.target.value==="great-sword" || e.target.value==="long-sword" || e.target.value==="sword-and-shield" || e.target.value==="dual-blades" || e.target.value==="hammer"
+                || e.target.value==="hunting-horn" || e.target.value==="lance" || e.target.value==="gunlance" || e.target.value==="switch-axe" || e.target.value==="charge-blade"
+                || e.target.value==="head" || e.target.value==="insect-glaive" || e.target.value==="light-bowgun" || e.target.value==="heavy-bowgun" || e.target.value==="bow")
         {
-            type="weapon"
+            type="weapons"
         }
-        else if(e.target.value==="charm")
+        else if(e.target.value==="")
         {
-            type="charm"
+            type="charms"
         }
+        console.log("value:" + e.target.value)
+        console.log("type:" + type)
         setUrlModifier(type)
         setType(e.target.value)
     }
@@ -46,7 +48,7 @@ export default function TypeSelect(props) {
             <option  value="light-bowgun">Light Bowgun</option>
             <option  value="heavy-bowgun">Heavy Bowgun</option>
             <option  value="bow">Bow</option>
-            <option  value="charm">Charm</option>
+            <option  value="">Charm</option>
         </select>
         </>
     )

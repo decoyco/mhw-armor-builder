@@ -6,7 +6,7 @@ import axios from 'axios'
 
 function App() {
   const BASE_URL = 'https://mhw-db.com/'
-  const [results, setResults] = useState([''])
+  const [results, setResults] = useState([])
   const [type, setType] = useState(['head'])
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
@@ -20,12 +20,12 @@ function App() {
     {
       method:'GET',
       url: newUrl,
-      params: {q: '{"defense.base":{"$gt":50}}'},
+      params: {q: '{"defense.base":{"$gt":0}}'},
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res => {
       setResults(res.data)
-      console.log(results)
+      console.log(res.data)
     })
     //catching errors, including checking for cancelled search
     .catch(e => {
@@ -38,12 +38,13 @@ function App() {
   {
     let cancel
     const newUrl = BASE_URL + urlModifier
+    console.log(newUrl)
     setSearchUrl(newUrl)
     axios(
     {
       method:'GET',
       url: newUrl,
-      params: {q: '{"defense.base":{"$gt":0}}'},
+      params: {q: '{"type":"' + type + '"}'},
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res => {

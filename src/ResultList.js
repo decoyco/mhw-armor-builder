@@ -9,7 +9,7 @@ export default function ResultList(props) {
             {
                 results.map(equipment =>
                 (
-                    <div key={equipment.name}>{equipment.name}</div>
+                    <div key={equipment.id}>{equipment.name}</div>
                 ))
             }
         </>
