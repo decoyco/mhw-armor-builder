@@ -38,7 +38,6 @@ function App() {
   {
     let cancel
     const newUrl = BASE_URL + urlModifier
-    console.log(newUrl)
     setSearchUrl(newUrl)
     axios(
     {
