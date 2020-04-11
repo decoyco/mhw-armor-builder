@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { render } from '@testing-library/react'
 
 export default function SkillSelect(props) {
     const
@@ -7,17 +8,18 @@ export default function SkillSelect(props) {
         skills,
         setSkillQuery
     } = props
-    const [skill, setSkill] = useState(1)
-    const [skillLevel, setSkillLevel] = useState("0")
+    const [skill, setSkill] = useState("")
+    const [skillLevel, setSkillLevel] = useState("")
 
     useEffect(() => {
-        let query = ""
-        if(skill != "")
+        let query = ''
+        if(skill != "" && skillLevel >= 0)
         {
-            query = ',"skills":[{"skill":' + skill + ',"level":' + skillLevel + '}]'
+            query = (urlModifier=='charms' ? ',"ranks.' : ',"') + 'skills.skill":' + skill +
+                    (urlModifier=='charms' ? '' : ',"skills.level":{"$gte":' + skillLevel + '}') 
         }
         setSkillQuery(query)
-    }, [skill, skillLevel])
+    }, [skill, skillLevel, urlModifier])
 
     function handleSkillChange(e)
     {
@@ -33,14 +35,14 @@ export default function SkillSelect(props) {
         <>
             <div>
             <label>Skill:</label>
-            <select>
-                {urlModifier != "charms" && <option value="" selected="true"></option>}
+            <select onChange={handleSkillChange}>
+                <option value="" selected="true"></option>
                 {skills.map(skill =>
                 {
-                   return <option key={skill.skill} value={skill.skill}>{skill.name}</option>
+                   return <option key={skill.id} value={skill.id}>{skill.name}</option>
                 })}
             </select>
-            <input type="number" defaultValue="1"></input>
+            {urlModifier != "charms" && <input onChange={handleSkillLevelChange} type="number" defaultValue="0"></input>}
             </div>
         </>
     )

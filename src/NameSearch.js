@@ -9,7 +9,7 @@ export default function NameSearch(props) {
     {
         let query = ""
         if(e.target.value != "")
-            query = ',"name":{"$like":"'+e.target.value+'%"}'
+            query = '"name":{"$like":"'+e.target.value+'%"}'
         setNameQuery(query)
     }
     return (

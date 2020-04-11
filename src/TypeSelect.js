@@ -27,12 +27,11 @@ export default function TypeSelect(props) {
         else if(e.target.value==="")
         {
             type="charms"
-            query = ''
+            query = '"id":{"$gte":0}'
         }
         setUrlModifier(type)
         setType(e.target.value)
         setTypeQuery(query)
-        render()
     }
     return (
         <>

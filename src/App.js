@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from './SearchBar.js'
 import ResultList from './ResultList'
 import axios from 'axios'
+import { render } from '@testing-library/react';
 
 function App() {
   const BASE_URL = 'https://mhw-db.com/'
@@ -11,14 +12,14 @@ function App() {
   const [type, setType] = useState(['head'])
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('"type":"head"')
   const [skills, setSkills] = useState([''])
 
   //On load
   useEffect(() =>
   {
     setLoading(true)
-    const newUrl = BASE_URL + urlModifier
+    const newUrl = BASE_URL + urlModifier + searchQuery
     setSearchUrl(newUrl)
     axios(
     {
@@ -64,14 +65,16 @@ function App() {
     .catch(e => {
         if(axios.isCancel(e)) return
     })
+    render()
     return () => cancel()
-  }, [type, searchQuery])
+  }, [searchQuery])
 
   //render
   return (
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <SearchBar
+        type={type}
         skills={skills}
         urlModifier={urlModifier}
         setType={setType} 
