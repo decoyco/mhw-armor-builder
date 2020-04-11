@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { render } from '@testing-library/react'
 
 export default function BaseStatSearch(props) {
     const {
@@ -10,14 +11,29 @@ export default function BaseStatSearch(props) {
 
     function handleOnChange(e)
     {
+        let value = e.target.value
+        if(value == "" || value <= 0)
+            value = "0"
         setSelectValue(e.target.value)
-        const query = urlModifier=='armor' ? ',"defense.base":{"$gt":' + e.target.value + '}' : ',"attack.display":{"$gt":' + e.target.value + '}'
+        const query = urlModifier=='armor' ? ',"defense.base":{"$gt":' + value + '}' : ',"attack.display":{"$gt":' + value + '}'
         setBaseStatQuery(query)
     }
 
     useEffect(()=>
     {
-        const query = urlModifier=='armor' ? ',"defense.base":{"$gt":' + selectValue + '}' : ',"attack.display":{"$gt":' + selectValue + '}'
+        let query
+        switch(urlModifier){
+            case 'armor': 
+                query = ',"defense.base":{"$gt":0}'
+                break;
+            case 'weapons': 
+                query = ',"attack.display":{"$gt":0}'
+                break;
+            default: 
+                query = ''
+                break;
+        }
+        console.log("query:" + query)
         setBaseStatQuery(query)
     }, [urlModifier])
 

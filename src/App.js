@@ -12,31 +12,36 @@ function App() {
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
   const [searchQuery, setSearchQuery] = useState('')
+  const [skills, setSkills] = useState([''])
 
+  //On load
   useEffect(() =>
   {
     setLoading(true)
-    let cancel
     const newUrl = BASE_URL + urlModifier
     setSearchUrl(newUrl)
     axios(
     {
       method:'GET',
       url: newUrl,
-      cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res => {
       setResults(res.data)
-      console.log(res.data)
+      //console.log(res.data)
     })
     .then(()=> setLoading(false))
-    //catching errors, including checking for cancelled search
-    .catch(e => {
-        if(axios.isCancel(e)) return
-    })
-    return () => cancel()
+    axios(
+      {
+        method:'GET',
+        url: BASE_URL + 'skills',
+      })
+      .then(res => {
+        setSkills(res.data)
+      })
+      .then(()=> setLoading(false))
   }, [])
 
+  //On change to queries
   useEffect(() =>
   {
     setLoading(true)
@@ -62,10 +67,12 @@ function App() {
     return () => cancel()
   }, [type, searchQuery])
 
+  //render
   return (
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <SearchBar
+        skills={skills}
         urlModifier={urlModifier}
         setType={setType} 
         setUrlModifier={setUrlModifier}

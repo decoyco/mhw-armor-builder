@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils'
+import { render } from '@testing-library/react'
 
 export default function TypeSelect(props) {
     const {
@@ -9,25 +10,29 @@ export default function TypeSelect(props) {
     } = props
     function handleOnChange(e)
     {
+        let query
         let type
         if(e.target.value==="head" || e.target.value==="chest" || e.target.value==="gloves" || e.target.value==="waist" || e.target.value==="legs")
         {
             type="armor"
+            query = '"type":' + '"' + e.target.value + '"'
         }
         else if (e.target.value==="great-sword" || e.target.value==="long-sword" || e.target.value==="sword-and-shield" || e.target.value==="dual-blades" || e.target.value==="hammer"
                 || e.target.value==="hunting-horn" || e.target.value==="lance" || e.target.value==="gunlance" || e.target.value==="switch-axe" || e.target.value==="charge-blade"
                 || e.target.value==="head" || e.target.value==="insect-glaive" || e.target.value==="light-bowgun" || e.target.value==="heavy-bowgun" || e.target.value==="bow")
         {
             type="weapons"
+            query = '"type":' + '"' + e.target.value + '"'
         }
         else if(e.target.value==="")
         {
             type="charms"
+            query = ''
         }
-        const query = '"type":' + '"' + e.target.value + '"'
         setUrlModifier(type)
         setType(e.target.value)
         setTypeQuery(query)
+        render()
     }
     return (
         <>
