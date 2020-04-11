@@ -47,9 +47,10 @@ export default function SearchBar(props) {
         {urlModifier=='armor' && <RankSelect setRankQuery={setRankQuery}/>}
         {(urlModifier=='armor' || urlModifier=='charms') && <SkillSelect skills={skills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
         {
-        //<SlotSelect /><SlotSelect /><SlotSelect />
+        //<SlotSelect /> IN PROGRESS, BUG FOUND http://mhw-db.com/armor?q={"$and":[{"slots.rank":2},{"slots.rank":1}]}
         (urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>
         //<ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /> 
+        //<ElementSearch/>
         }
         </>
     )
