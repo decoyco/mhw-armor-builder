@@ -9,7 +9,7 @@ export default function SkillSelect(props) {
         setSkillQuery
     } = props
     const [skill, setSkill] = useState("")
-    const [skillLevel, setSkillLevel] = useState("")
+    const [skillLevel, setSkillLevel] = useState("0")
 
     useEffect(() => {
         let query = ''
@@ -28,7 +28,8 @@ export default function SkillSelect(props) {
 
     function handleSkillLevelChange(e)
     {
-        setSkillLevel(e.target.value)
+        if(e.target.value != "")
+            setSkillLevel(e.target.value)
     }
 
     return (

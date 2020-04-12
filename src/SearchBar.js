@@ -4,6 +4,7 @@ import BaseStatSearch from './BaseStatSearch'
 import RankSelect from './RankSelect'
 import NameSearch from './NameSearch'
 import SkillSelect from './SkillSelect'
+import ElementSearch from './ElementSearch'
 import { render } from '@testing-library/react'
 
 export default function SearchBar(props) {
@@ -22,13 +23,14 @@ export default function SearchBar(props) {
     const [rankQuery, setRankQuery] = useState('')
     const [nameQuery, setNameQuery] = useState('')
     const [skillQuery, setSkillQuery] = useState('')
+    const [elementQuery, setElementQuery] = useState('')
 
     useEffect(() =>
     {
-        const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery +'}'
+        const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery + elementQuery + '}'
         console.log(query)
         setSearchQuery(query)
-    }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery])
+    }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery, elementQuery])
 
     useEffect(() =>
     {
@@ -38,6 +40,7 @@ export default function SearchBar(props) {
         setRankQuery('')
         setSkillQuery('')
         setBaseStatQuery('')
+        setElementQuery('')
     }, [urlModifier])
 
     return (
@@ -48,10 +51,12 @@ export default function SearchBar(props) {
         {(urlModifier=='armor' || urlModifier=='charms') && <SkillSelect skills={skills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
         {
         //<SlotSelect /> IN PROGRESS, BUG FOUND http://mhw-db.com/armor?q={"$and":[{"slots.rank":2},{"slots.rank":1}]}
-        (urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>
-        //<ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /> 
-        //<ElementSearch/>
         }
+        {(urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>}
+        {//<ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /> 
+        }
+        {urlModifier=='weapons' && <ElementSearch urlModifier={urlModifier} setElementQuery={setElementQuery}/>}
+        
         </>
     )
 }
