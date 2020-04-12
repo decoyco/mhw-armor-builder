@@ -39,8 +39,10 @@ export default function BaseStatSearch(props) {
 
     return (
         <>
+        <div>
             <label>{urlModifier == 'armor' ? "Base Defense:" : "Base Attack:"}</label>
             <input defaultValue="0" onChange={handleOnChange} type="number"></input>
+        </div>
         </>
     )
 }

@@ -17,6 +17,7 @@ export default function RankSelect(props) {
     }
     return (
         <>
+        <div>
             <label>Rank:</label>
             <select onChange={handleOnChange}>
                 <option value=""></option>
@@ -24,6 +25,7 @@ export default function RankSelect(props) {
                 <option value="high">High</option>
                 <option value="master">Master</option>
             </select>
+        </div>
         </>
     )
 }

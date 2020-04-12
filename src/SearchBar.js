@@ -45,8 +45,8 @@ export default function SearchBar(props) {
 
     return (
         <>
-        {urlModifier != 'charms' && <NameSearch setNameQuery={setNameQuery}/>}
         <TypeSelect setType={setType} setUrlModifier={setUrlModifier} setTypeQuery={setTypeQuery}/>
+        {urlModifier != 'charms' && <NameSearch setNameQuery={setNameQuery}/>}
         {urlModifier=='armor' && <RankSelect setRankQuery={setRankQuery}/>}
         {(urlModifier=='armor' || urlModifier=='charms') && <SkillSelect skills={skills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
         {
