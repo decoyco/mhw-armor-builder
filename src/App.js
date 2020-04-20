@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import SearchBar from './SearchBar.js'
 import ResultList from './ResultList'
+import EquipmentStats from './EquipmentStats'
 import axios from 'axios'
 import { render } from '@testing-library/react';
 
 function App() {
   const BASE_URL = 'https://mhw-db.com/'
+  //states
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState([])
   const [type, setType] = useState(['head'])
@@ -14,6 +16,13 @@ function App() {
   const [urlModifier, setUrlModifier] = useState(['armor'])
   const [searchQuery, setSearchQuery] = useState('"type":"head"')
   const [skills, setSkills] = useState([''])
+  const [head, setHead] = useState('')
+  const [chest, setChest] = useState('')
+  const [gloves, setGloves] = useState('')
+  const [waist, setWaist] = useState('')
+  const [boots, setBoots] = useState('')
+  const [weapon, setWeapon] = useState('')
+  const [charm, setCharm] = useState('')
 
   //On load
   useEffect(() =>
@@ -73,6 +82,15 @@ function App() {
   return (
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
+      <EquipmentStats 
+        head={head}
+        chest={chest}
+        gloves={gloves}
+        waist={waist}
+        boots={boots}
+        weapon={weapon}
+        charm={charm}
+      />
       <SearchBar
         type={type}
         skills={skills}
@@ -84,7 +102,15 @@ function App() {
       {
         loading ? <div>Loading...</div> :
         <ResultList 
+          type={type}
           results={results} 
+          setHead={setHead}
+          setChest={setCharm}
+          setGloves={setGloves}
+          setWaist={setWaist}
+          setBoots={setBoots}
+          setWeapon={setWeapon}
+          setCharm={setCharm}
         />
       }
       
