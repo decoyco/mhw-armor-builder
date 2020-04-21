@@ -14,7 +14,6 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             temp += head.defense.base
         }
         setTDefense(temp)
-        render()
     }, [head,chest,gloves,waist,boots,weapon,charm])
     return {
         t_attack,
