@@ -11,7 +11,7 @@ export default function ElementSearch(props) {
 
     useEffect(() => {
         let query = ""
-        if(urlModifier == 'weapons' && element != "" && value >= 0)
+        if(urlModifier === 'weapons' && element !== "" && value >= 0)
         {
             query = ',"elements.type":"' + element + '","elements.damage":{"$gte":' + value + '},"elements.hidden":' + hidden
         }
@@ -24,7 +24,7 @@ export default function ElementSearch(props) {
     }
     function handleValueChange(e)
     {
-        if(e.target.value != "")
+        if(e.target.value !== "")
             setValue(e.target.value)
     }
     function handleHiddenChange(e)

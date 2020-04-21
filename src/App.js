@@ -105,7 +105,7 @@ function App() {
           type={type}
           results={results} 
           setHead={setHead}
-          setChest={setCharm}
+          setChest={setChest}
           setGloves={setGloves}
           setWaist={setWaist}
           setBoots={setBoots}

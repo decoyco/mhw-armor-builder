@@ -9,7 +9,7 @@ export default function RankSelect(props) {
     function handleOnChange(e)
     {
         let query = ""
-        if(e.target.value != "")
+        if(e.target.value !== "")
         {
             query = '"rank":"' + e.target.value + '"'
         }
