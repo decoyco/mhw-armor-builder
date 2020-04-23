@@ -40,15 +40,6 @@ function App() {
       setResults(res.data)
     })
     .then(()=> setLoading(false))
-    axios(
-      {
-        method:'GET',
-        url: BASE_URL + 'skills',
-      })
-      .then(res => {
-        setDbSkills(res.data)
-      })
-      .then(()=> setLoading(false))
   }, [])
 
   //On change to queries
@@ -67,7 +58,6 @@ function App() {
     })
     .then(res => {
       setResults(res.data)
-      console.log(results)
     })
     .then(()=>setLoading(false))
     //catching errors, including checking for cancelled search
