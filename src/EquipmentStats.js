@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import GetEquipmentStats from './GetEquipmentStats'
+import axios from 'axios'
 
 export default function EquipmentStats(props) {
     const {
@@ -29,6 +30,7 @@ export default function EquipmentStats(props) {
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
     const [skills, setSkills] = useState(new Map())
+    const [skillValue, setSkillValue] = useState('')
 
     useEffect(() => {
         setDefense(t_defense)
@@ -38,6 +40,12 @@ export default function EquipmentStats(props) {
         setHidden(t_hidden)
         setAffinity(t_affinity)
         setSkills(t_skills)
+        
+
+        // [...t_skills.keys()].map(skill =>{
+        //     const db_skill = dbSkills.filter(s => s.name == skill)
+        //     setSkillValue((t_skills.get(skill) > db_skill[0].ranks.length) ? db_skill[0].ranks.length + '(+' + t_skills.get(skill) - db_skill[0].ranks.length + ')' : t_skills.get(skill))
+        // })
     }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills])
 
     return (
@@ -58,7 +66,7 @@ export default function EquipmentStats(props) {
                 Skills:
                 {[...skills.keys()].map(skill =>
                 (
-                    <li key={skill}>{skill} : {skills.get(skill)}</li>
+                    <li key={skill}>{skill} : {skillValue}</li>
                 ))}
             </div>
         </>

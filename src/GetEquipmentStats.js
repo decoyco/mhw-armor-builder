@@ -10,7 +10,6 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
     const [t_element, setTElement] = useState('')
     const [t_hidden, setTHidden] = useState(false)
     const [t_skills, setTSkills] = useState(new Map())
-    const [data, setData] = useState('')
 
     useEffect(() => {
         let temp_defense = 0
@@ -98,3 +97,4 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         t_skills
     }
 }
+

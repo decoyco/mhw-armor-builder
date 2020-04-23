@@ -33,7 +33,6 @@ export default function BaseStatSearch(props) {
                 query = ''
                 break;
         }
-        console.log("query:" + query)
         setBaseStatQuery(query)
     }, [urlModifier])
 

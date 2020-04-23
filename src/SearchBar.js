@@ -11,7 +11,7 @@ export default function SearchBar(props) {
     //props
     const {
         type,
-        skills,
+        dbSkills,
         urlModifier,
         setType, 
         setUrlModifier,
@@ -28,7 +28,7 @@ export default function SearchBar(props) {
     useEffect(() =>
     {
         const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery + elementQuery + '}'
-        console.log(query)
+        console.log("query: " + query)
         setSearchQuery(query)
     }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery, elementQuery])
 
@@ -48,7 +48,7 @@ export default function SearchBar(props) {
         <TypeSelect setType={setType} setUrlModifier={setUrlModifier} setTypeQuery={setTypeQuery}/>
         {urlModifier != 'charms' && <NameSearch setNameQuery={setNameQuery}/>}
         {urlModifier=='armor' && <RankSelect setRankQuery={setRankQuery}/>}
-        {(urlModifier=='armor' || urlModifier=='charms') && <SkillSelect skills={skills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
+        {(urlModifier=='armor' || urlModifier=='charms') && <SkillSelect dbSkills={dbSkills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
         {
         //<SlotSelect /> IN PROGRESS, BUG FOUND http://mhw-db.com/armor?q={"$and":[{"slots.rank":2},{"slots.rank":1}]}
         }

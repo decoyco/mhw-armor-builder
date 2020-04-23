@@ -14,7 +14,7 @@ function App() {
   const [type, setType] = useState(['head'])
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
-  const [searchQuery, setSearchQuery] = useState('"type":"head"')
+  const [searchQuery, setSearchQuery] = useState('{"type":"head"}')
   const [skills, setSkills] = useState([''])
   const [head, setHead] = useState('')
   const [chest, setChest] = useState('')
@@ -23,23 +23,28 @@ function App() {
   const [boots, setBoots] = useState('')
   const [weapon, setWeapon] = useState('')
   const [charm, setCharm] = useState('')
-  const [dbSkills, setDbSkills] = useState('')
+  const [dbSkills, setDbSkills] = useState([])
 
   //On load
   useEffect(() =>
   {
     setLoading(true)
-    const newUrl = BASE_URL + urlModifier + searchQuery
+    const newUrl = BASE_URL + urlModifier
     setSearchUrl(newUrl)
-    axios(
+    const equipment_request = axios(
     {
       method:'GET',
+      params: {q: searchQuery},
       url: newUrl,
     })
-    .then(res => {
-      setResults(res.data)
-    })
-    .then(()=> setLoading(false))
+    
+
+    const skills_request = axios.get(BASE_URL+'skills')
+    axios.all([equipment_request,skills_request]).then(axios.spread((...res) => {
+      setResults(res[0].data)
+      setDbSkills(res[1].data)
+      console.log(dbSkills)
+    })).then(()=> setLoading(false))
   }, [])
 
   //On change to queries
@@ -56,14 +61,14 @@ function App() {
       params: {q: searchQuery },
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
-    .then(res => {
+    .then(res =>{
       setResults(res.data)
+      setLoading(false)
     })
-    .then(()=>setLoading(false))
     //catching errors, including checking for cancelled search
     .catch(e => {
-        if(axios.isCancel(e)) return
-    })
+      if(axios.isCancel(e)) return
+  })
     render()
     return () => cancel()
   }, [searchQuery])
@@ -80,10 +85,11 @@ function App() {
         boots={boots}
         weapon={weapon}
         charm={charm}
+        dbSkills={dbSkills}
       />
       <SearchBar
         type={type}
-        skills={skills}
+        dbSkills={dbSkills}
         urlModifier={urlModifier}
         setType={setType} 
         setUrlModifier={setUrlModifier}

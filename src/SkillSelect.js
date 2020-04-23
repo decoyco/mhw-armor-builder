@@ -5,7 +5,7 @@ export default function SkillSelect(props) {
     const
     {
         urlModifier,
-        skills,
+        dbSkills,
         setSkillQuery
     } = props
     const [skill, setSkill] = useState("")
@@ -38,7 +38,7 @@ export default function SkillSelect(props) {
             <label>Skill:</label>
             <select onChange={handleSkillChange}>
                 <option value="" selected="true"></option>
-                {skills.map(skill =>
+                {dbSkills.map(skill =>
                 {
                    return <option key={skill.id} value={skill.id}>{skill.name}</option>
                 })}
