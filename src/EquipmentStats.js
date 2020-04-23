@@ -33,6 +33,12 @@ export default function EquipmentStats(props) {
     const [skillValue, setSkillValue] = useState('')
 
     useEffect(() => {
+        
+        [...t_skills.keys()].map(skill =>{
+            const db_skill = dbSkills.filter(s => s.name == skill)
+            setSkillValue((t_skills.get(skill) > db_skill[0].ranks.length) ? db_skill[0].ranks.length.toString() + '(+' + (t_skills.get(skill) - db_skill[0].ranks.length).toString() + ')' : t_skills.get(skill))
+        })
+
         setDefense(t_defense)
         setAttack(t_attack)
         setElement(t_element)
@@ -40,12 +46,6 @@ export default function EquipmentStats(props) {
         setHidden(t_hidden)
         setAffinity(t_affinity)
         setSkills(t_skills)
-        
-
-        // [...t_skills.keys()].map(skill =>{
-        //     const db_skill = dbSkills.filter(s => s.name == skill)
-        //     setSkillValue((t_skills.get(skill) > db_skill[0].ranks.length) ? db_skill[0].ranks.length + '(+' + t_skills.get(skill) - db_skill[0].ranks.length + ')' : t_skills.get(skill))
-        // })
     }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills])
 
     return (

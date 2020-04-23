@@ -37,14 +37,14 @@ function App() {
       params: {q: searchQuery},
       url: newUrl,
     })
-    
-
     const skills_request = axios.get(BASE_URL+'skills')
+
     axios.all([equipment_request,skills_request]).then(axios.spread((...res) => {
       setResults(res[0].data)
       setDbSkills(res[1].data)
-      console.log(dbSkills)
-    })).then(()=> setLoading(false))
+    })).then(()=>{
+      setLoading(false)
+    })
   }, [])
 
   //On change to queries
