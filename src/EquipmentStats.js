@@ -9,7 +9,8 @@ export default function EquipmentStats(props) {
         waist,
         boots,
         weapon,
-        charm
+        charm,
+        dbSkills
     } = props
     const {
         t_attack,
@@ -19,7 +20,7 @@ export default function EquipmentStats(props) {
         t_defense,
         t_skills,
         t_affinity
-    } = GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm)
+    } = GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm, dbSkills)
 
     const [attack, setAttack] = useState(0)
     const [element, setElement] = useState('')
@@ -27,7 +28,7 @@ export default function EquipmentStats(props) {
     const [hidden, setHidden] = useState(false)
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
-    const [skills, setSkills] = useState('')
+    const [skills, setSkills] = useState(new Map())
 
     useEffect(() => {
         setDefense(t_defense)
@@ -36,7 +37,8 @@ export default function EquipmentStats(props) {
         setElementValue(t_elementValue)
         setHidden(t_hidden)
         setAffinity(t_affinity)
-    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden])
+        setSkills(t_skills)
+    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills])
 
     return (
         <>
@@ -51,6 +53,13 @@ export default function EquipmentStats(props) {
             </div>
             <div>
                 Affinity: {affinity}
+            </div>
+            <div>
+                Skills:
+                {[...skills.keys()].map(skill =>
+                (
+                    <li key={skill}>{skill} : {skills.get(skill)}</li>
+                ))}
             </div>
         </>
     )

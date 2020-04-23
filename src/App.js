@@ -23,6 +23,7 @@ function App() {
   const [boots, setBoots] = useState('')
   const [weapon, setWeapon] = useState('')
   const [charm, setCharm] = useState('')
+  const [dbSkills, setDbSkills] = useState('')
 
   //On load
   useEffect(() =>
@@ -37,7 +38,6 @@ function App() {
     })
     .then(res => {
       setResults(res.data)
-      //console.log(res.data)
     })
     .then(()=> setLoading(false))
     axios(
@@ -46,7 +46,7 @@ function App() {
         url: BASE_URL + 'skills',
       })
       .then(res => {
-        setSkills(res.data)
+        setDbSkills(res.data)
       })
       .then(()=> setLoading(false))
   }, [])

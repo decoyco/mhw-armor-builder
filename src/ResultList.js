@@ -15,29 +15,6 @@ export default function ResultList(props) {
     function handleOnClick(e)
     {
         const equip = JSON.parse(e.target.value)
-        // switch (type) {
-        //     case "head":
-        //         setHead(e.target.value)
-        //         break;
-        //     case 'chest':
-        //         setChest(e.target.value)
-        //         break;
-        //     case 'gloves':
-        //         setGloves(e.target.value)
-        //         break;
-        //     case 'waist':
-        //         setWaist(e.target.value)
-        //         break;
-        //     case 'legs':
-        //         setBoots(e.target.value)
-        //         break;
-        //     case '':
-        //         setCharm(e.target.value)
-        //         break;
-        //     default:
-        //         setWeapon(e.target.value)
-        //         break;
-        // }
         if(type == "head")
             setHead(equip)
         else if(type=="chest")
