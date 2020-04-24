@@ -2,15 +2,13 @@ import React from 'react'
 
 export default function NameSearch(props) {
     const {
-        setNameQuery
+        setName
     } = props
 
     function handleOnChange(e)
     {
-        let query = ""
-        if(e.target.value !== "")
-            query = '"name":{"$like":"'+e.target.value+'%"}'
-        setNameQuery(query)
+        const change = e.target.value == '' ? ' ' : e.target.value
+        setName(change)
     }
     return (
         <>

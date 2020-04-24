@@ -13,6 +13,7 @@ export default function EquipmentStats(props) {
         charm,
         dbSkills
     } = props
+    
     const {
         t_attack,
         t_element,

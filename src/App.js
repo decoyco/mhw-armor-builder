@@ -24,6 +24,7 @@ function App() {
   const [weapon, setWeapon] = useState('')
   const [charm, setCharm] = useState('')
   const [dbSkills, setDbSkills] = useState([])
+  const [name, setName] = useState(' ')
 
   //On load
   useEffect(() =>
@@ -62,7 +63,8 @@ function App() {
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res =>{
-      setResults(res.data)
+      const t_results = res.data.filter(result => result.name.toLowerCase().indexOf(name.toLowerCase()) != -1)
+      setResults(t_results)
       setLoading(false)
     })
     //catching errors, including checking for cancelled search
@@ -71,7 +73,7 @@ function App() {
   })
     render()
     return () => cancel()
-  }, [searchQuery])
+  }, [searchQuery, name])
 
   //render
   return (
@@ -94,6 +96,7 @@ function App() {
         setType={setType} 
         setUrlModifier={setUrlModifier}
         setSearchQuery={setSearchQuery}
+        setName={setName}
       />
       {
         loading ? <div>Loading...</div> :
