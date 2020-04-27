@@ -24,7 +24,7 @@ export default function EquipmentDisplay(props) {
                     Slots:
                     {equipmentDisplay.slots.map(slot =>
                     (
-                        <li key={slot.rank}>Lv{slot.rank}</li>
+                        <li key={Math.random()}>Lv{slot.rank}</li>
                     ))}
                 </div>
                 </>

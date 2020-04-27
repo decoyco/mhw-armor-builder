@@ -30,13 +30,13 @@ export default function TypeSelect(props) {
         {
             type="charms"
             query = '"id":{"$gte":0}'
-            setType('')
+            setType('charms')
         }
         else if(e.target.value==="decoration")
         {
             type="decorations"
             query = '"id":{"$gte":0}'   
-            setType('')
+            setType('decorations')
         }
         setUrlModifier(type)
         setTypeQuery(query)

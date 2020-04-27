@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { render } from '@testing-library/react'
 import axios from 'axios'
 
-export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm, dbSkills) {
+export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm,decos, dbSkills) {
     const [t_attack, setTAttack] = useState(0)
     const [t_defense, setTDefense] = useState(0)
     const [t_affinity, setTAffinity] = useState(0)
@@ -35,7 +35,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(head.slots)
             head.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                 })
         }
         if(chest !== '')
@@ -48,7 +48,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(chest.slots)
             chest.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                 })
             
         }
@@ -62,7 +62,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(gloves.slots)
             gloves.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                 })
         }
         if(waist !== '')
@@ -75,7 +75,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(waist.slots)
             waist.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                 })
         } 
         if(boots !== '')
@@ -88,7 +88,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(boots.slots)
             boots.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                 })
         }
         if(weapon !== '')
@@ -105,7 +105,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(weapon.slots)
                 weapon.slots.map(slot =>
                     {
-                        temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                        temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
                     })
         }
         if(charm !== '')

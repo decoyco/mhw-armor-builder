@@ -11,7 +11,7 @@ export default function RankSelect(props) {
         let query = ""
         if(e.target.value !== "")
         {
-            query = '"rank":"' + e.target.value + '"'
+            query = ',"rank":"' + e.target.value + '"'
         }
         setRankQuery(query)
     }

@@ -24,6 +24,8 @@ function App() {
   const [boots, setBoots] = useState('')
   const [weapon, setWeapon] = useState('')
   const [charm, setCharm] = useState('')
+  const [decos, setDecos] = useState([])
+  const [slots, setSlots] = useState(new Map())
   const [dbSkills, setDbSkills] = useState([])
   const [name, setName] = useState(' ')
   const [equipmentDisplay, setEquipmentDisplay] = useState('')
@@ -82,6 +84,8 @@ function App() {
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <EquipmentStats 
+        decos={decos}
+        slots={slots}
         head={head}
         chest={chest}
         gloves={gloves}
@@ -90,6 +94,14 @@ function App() {
         weapon={weapon}
         charm={charm}
         dbSkills={dbSkills}
+        setSlots={setSlots}
+        setWeapon={setWeapon}
+        setHead={setHead}
+        setChest={setChest}
+        setGloves={setGloves}
+        setWaist={setWaist}
+        setBoots={setBoots}
+        setCharm={setCharm}
       />
       <SearchBar
         type={type}
@@ -111,7 +123,7 @@ function App() {
       {
         loading ? <div>Loading...</div> :
         <ResultList 
-          setEquipmentDisplay={setEquipmentDisplay}
+          slots={slots}
           urlModifier={urlModifier}
           type={type}
           results={results} 
@@ -122,6 +134,8 @@ function App() {
           setBoots={setBoots}
           setWeapon={setWeapon}
           setCharm={setCharm}
+          setEquipmentDisplay={setEquipmentDisplay}
+          setDecos={setDecos}
         />
       }
       

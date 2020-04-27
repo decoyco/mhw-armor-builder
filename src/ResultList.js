@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function ResultList(props) {
     const {
+        slots,
+        decos,
         urlModifier,
         type,
         results,
@@ -12,25 +14,44 @@ export default function ResultList(props) {
         setBoots,
         setWeapon,
         setCharm,
-        setEquipmentDisplay
+        setEquipmentDisplay,
+        setDecos
     } = props
     function handleOnClick(e)
     {
         const equip = JSON.parse(e.target.value)
         if(type == "head")
+        {
             setHead(equip)
+        }
         else if(type=="chest")
+        {
             setChest(equip)
+        }
         else if(type=="gloves")
+        {
             setGloves(equip)
+        }
         else if(type=="waist")
+        {
             setWaist(equip)
+        }
         else if(type=="legs")
+        {
             setBoots(equip)
-        else if(type=="")
+        }
+        else if(type=="charms")
+        {
             setCharm(equip)
+        }
+        else if(type=="decorations")
+        {
+            //TO BE FILLED
+        }
         else
+        {
             setWeapon(equip)
+        }
     }
 
     function handleOnMouseOver(e)
