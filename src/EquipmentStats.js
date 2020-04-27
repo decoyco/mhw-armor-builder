@@ -21,7 +21,8 @@ export default function EquipmentStats(props) {
         t_hidden,
         t_defense,
         t_skills,
-        t_affinity
+        t_affinity,
+        t_slots
     } = GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm, dbSkills)
 
     const [attack, setAttack] = useState(0)
@@ -31,6 +32,7 @@ export default function EquipmentStats(props) {
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
     const [skills, setSkills] = useState(new Map())
+    const [slots, setSlots] = useState(new Map())
     const [skillValue, setSkillValue] = useState('')
 
     useEffect(() => {
@@ -47,7 +49,8 @@ export default function EquipmentStats(props) {
         setHidden(t_hidden)
         setAffinity(t_affinity)
         setSkills(t_skills)
-    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills])
+        setSlots(t_slots)
+    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills, t_slots])
 
     return (
         <>

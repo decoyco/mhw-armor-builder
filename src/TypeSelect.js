@@ -16,6 +16,7 @@ export default function TypeSelect(props) {
         {
             type="armor"
             query = '"type":' + '"' + e.target.value + '"'
+            setType(e.target.value)
         }
         else if (e.target.value==="great-sword" || e.target.value==="long-sword" || e.target.value==="sword-and-shield" || e.target.value==="dual-blades" || e.target.value==="hammer"
                 || e.target.value==="hunting-horn" || e.target.value==="lance" || e.target.value==="gunlance" || e.target.value==="switch-axe" || e.target.value==="charge-blade"
@@ -23,14 +24,21 @@ export default function TypeSelect(props) {
         {
             type="weapons"
             query = '"type":' + '"' + e.target.value + '"'
+            setType(e.target.value)
         }
-        else if(e.target.value==="")
+        else if(e.target.value==="charm")
         {
             type="charms"
             query = '"id":{"$gte":0}'
+            setType('')
+        }
+        else if(e.target.value==="decoration")
+        {
+            type="decorations"
+            query = '"id":{"$gte":0}'   
+            setType('')
         }
         setUrlModifier(type)
-        setType(e.target.value)
         setTypeQuery(query)
     }
     return (
@@ -56,7 +64,8 @@ export default function TypeSelect(props) {
             <option  value="light-bowgun">Light Bowgun</option>
             <option  value="heavy-bowgun">Heavy Bowgun</option>
             <option  value="bow">Bow</option>
-            <option  value="">Charm</option>
+            <option  value="charm">Charm</option>
+            <option  value="decoration">Decorations</option>
         </select>
         </>
     )

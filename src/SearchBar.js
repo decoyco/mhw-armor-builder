@@ -16,7 +16,8 @@ export default function SearchBar(props) {
         setType, 
         setUrlModifier,
         setSearchQuery,
-        setName
+        setName,
+        setEquipmentDisplay
     } = props
     //states
     const [baseStatQuery, setBaseStatQuery] = useState('')
@@ -35,13 +36,14 @@ export default function SearchBar(props) {
 
     useEffect(() =>
     {
-        const initQuery = urlModifier != 'charms' ? '"type":"' + type + '"' : '"id":{"$gte":0}'
+        const initQuery = (urlModifier != 'charms' && urlModifier != 'decorations') ? '"type":"' + type + '"' : '"id":{"$gte":0}'
         setTypeQuery(initQuery)
         setNameQuery('')
         setRankQuery('')
         setSkillQuery('')
         setBaseStatQuery('')
         setElementQuery('')
+        setEquipmentDisplay('')
     }, [urlModifier])
 
     return (

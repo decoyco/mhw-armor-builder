@@ -9,7 +9,7 @@ export default function EquipmentDisplay(props) {
         <div>
             <h3>{equipmentDisplay.name}</h3>
             {
-                (urlModifier == 'armor') 
+                (urlModifier == 'armor' && equipmentDisplay.defense) 
                 &&
                 <>
                 <div>Def: {equipmentDisplay.defense.base}</div>
@@ -17,13 +17,20 @@ export default function EquipmentDisplay(props) {
                 Skills:
                 {equipmentDisplay.skills.map(skill =>
                 (
-                    <li key={skill}>{skill.skillName} : {skill.level}</li>
+                    <li key={skill.id}>{skill.skillName} : {skill.level}</li>
                 ))}
+                </div>
+                <div>
+                    Slots:
+                    {equipmentDisplay.slots.map(slot =>
+                    (
+                        <li key={slot.rank}>Lv{slot.rank}</li>
+                    ))}
                 </div>
                 </>
             }
             {
-                (urlModifier == 'weapons')
+                (urlModifier == 'weapons' && equipmentDisplay.attack)
                 &&
                 <>
                 <div>Atk: {equipmentDisplay.attack.display}</div>
@@ -38,13 +45,24 @@ export default function EquipmentDisplay(props) {
                 </>
             }
             {
-                (urlModifier == 'charms')
+                (urlModifier == 'charms' && equipmentDisplay.ranks)
                 &&
                 <div>
                 Skills:
                 {equipmentDisplay.ranks[equipmentDisplay.ranks.length-1].skills.map(skill =>
                 (
-                    <li key={skill}>{skill.skillName} : {skill.level}</li>
+                    <li key={skill.id}>{skill.skillName} : {skill.level}</li>
+                ))}
+                </div>
+            }
+            {
+                (urlModifier == 'decorations' && equipmentDisplay.slot)
+                &&
+                <div>
+                Skills:
+                {equipmentDisplay.skills.map(skill =>
+                (
+                    <li key={skill.id}>{skill.skillName} : {skill.level}</li>
                 ))}
                 </div>
             }

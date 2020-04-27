@@ -10,6 +10,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
     const [t_element, setTElement] = useState('')
     const [t_hidden, setTHidden] = useState(false)
     const [t_skills, setTSkills] = useState(new Map())
+    const [t_slots, setTSlots] = useState(new Map())
 
     useEffect(() => {
         let temp_defense = 0
@@ -18,14 +19,24 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         let temp_elementValue = 0
         let temp_hidden = false
         let temp_skills = new Map()
+        let temp_slots = new Map()
+        temp_slots.set(4,0)
+        temp_slots.set(3,0)
+        temp_slots.set(2,0)
+        temp_slots.set(1,0)
         let temp_element = ''
         if(head !== '')
         {
             temp_defense += head.defense.base
             head.skills.map(skill =>
-            {
-                temp_skills.set(skill.skillName, skill.level)
-            })
+                {
+                    temp_skills.set(skill.skillName, skill.level)
+                })
+            if(head.slots)
+            head.slots.map(slot =>
+                {
+                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                })
         }
         if(chest !== '')
         {
@@ -34,6 +45,12 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 {
                     temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
                 })
+            if(chest.slots)
+            chest.slots.map(slot =>
+                {
+                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                })
+            
         }
         if(gloves !== '')
         {
@@ -41,6 +58,11 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             gloves.skills.map(skill =>
                 {
                     temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                })
+            if(gloves.slots)
+            gloves.slots.map(slot =>
+                {
+                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
                 })
         }
         if(waist !== '')
@@ -50,6 +72,11 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 {
                     temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
                 })
+            if(waist.slots)
+            waist.slots.map(slot =>
+                {
+                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                })
         } 
         if(boots !== '')
         {
@@ -57,6 +84,11 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             boots.skills.map(skill =>
                 {
                     temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                })
+            if(boots.slots)
+            boots.slots.map(slot =>
+                {
+                    temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
                 })
         }
         if(weapon !== '')
@@ -70,6 +102,11 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 temp_elementValue = weapon.elements[0].damage
                 temp_hidden = weapon.elements[0].hidden
             }
+            if(weapon.slots)
+                weapon.slots.map(slot =>
+                    {
+                        temp_slots.set(slot.rank, temp_slots.get(slot) + 1)
+                    })
         }
         if(charm !== '')
         {
@@ -79,6 +116,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 })
         }
 
+        setTSlots(temp_slots)
         setTDefense(temp_defense)
         setTAttack(temp_attack)
         setTElement(temp_element)
@@ -94,7 +132,8 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         t_hidden,
         t_defense,
         t_affinity,
-        t_skills
+        t_skills,
+        t_slots
     }
 }
 

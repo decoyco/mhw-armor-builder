@@ -99,6 +99,7 @@ function App() {
         setUrlModifier={setUrlModifier}
         setSearchQuery={setSearchQuery}
         setName={setName}
+        setEquipmentDisplay={setEquipmentDisplay}
       />
       {
         equipmentDisplay == '' ? <div></div> :
