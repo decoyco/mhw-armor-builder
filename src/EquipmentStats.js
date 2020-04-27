@@ -61,7 +61,7 @@ export default function EquipmentStats(props) {
                 {(element !== '' && elementValue !== 0) && element.charAt(0).toUpperCase() + element.slice(1) + ' :' + elementValue + (hidden ? "(Hidden)" : '')}
             </div>
             <div>
-                Affinity: {affinity}
+                Affinity: {affinity}%
             </div>
             <div>
                 Skills:

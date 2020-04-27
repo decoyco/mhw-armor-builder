@@ -3,6 +3,7 @@ import './App.css';
 import SearchBar from './SearchBar.js'
 import ResultList from './ResultList'
 import EquipmentStats from './EquipmentStats'
+import EquipmentDisplay from './EquipmentDisplay'
 import axios from 'axios'
 import { render } from '@testing-library/react';
 
@@ -25,6 +26,7 @@ function App() {
   const [charm, setCharm] = useState('')
   const [dbSkills, setDbSkills] = useState([])
   const [name, setName] = useState(' ')
+  const [equipmentDisplay, setEquipmentDisplay] = useState('')
 
   //On load
   useEffect(() =>
@@ -99,8 +101,17 @@ function App() {
         setName={setName}
       />
       {
+        equipmentDisplay == '' ? <div></div> :
+        <EquipmentDisplay 
+          urlModifier={urlModifier}
+          equipmentDisplay={equipmentDisplay}
+        />
+      }
+      {
         loading ? <div>Loading...</div> :
         <ResultList 
+          setEquipmentDisplay={setEquipmentDisplay}
+          urlModifier={urlModifier}
           type={type}
           results={results} 
           setHead={setHead}

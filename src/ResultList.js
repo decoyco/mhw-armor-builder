@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function ResultList(props) {
     const {
+        urlModifier,
         type,
         results,
         setHead,
@@ -10,7 +11,8 @@ export default function ResultList(props) {
         setWaist,
         setBoots,
         setWeapon,
-        setCharm
+        setCharm,
+        setEquipmentDisplay
     } = props
     function handleOnClick(e)
     {
@@ -30,12 +32,22 @@ export default function ResultList(props) {
         else
             setWeapon(equip)
     }
+
+    function handleOnMouseOver(e)
+    {
+        const equip = JSON.parse(e.target.value)
+        setEquipmentDisplay(equip)
+    }
     return (
         <>
             {
                 results.map(equipment =>
                 (
-                    <div key={equipment.id}><button onClick={handleOnClick} value={JSON.stringify(equipment)}>{equipment.name}</button></div>
+                    <div key={equipment.id}>
+                        <button onClick={handleOnClick} value={JSON.stringify(equipment)} onMouseOver={handleOnMouseOver}>
+                            {equipment.name}                
+                        </button>
+                    </div>
                 ))
             }
         </>
