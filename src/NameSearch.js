@@ -7,7 +7,7 @@ export default function NameSearch(props) {
 
     function handleOnChange(e)
     {
-        const change = e.target.value == '' ? ' ' : e.target.value
+        const change = e.target.value === '' ? ' ' : e.target.value
         setName(change)
     }
     return (

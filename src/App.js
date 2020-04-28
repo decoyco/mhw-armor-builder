@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState([])
   const [type, setType] = useState(['head'])
-  const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
   const [searchQuery, setSearchQuery] = useState('{"type":"head"}')
   const [head, setHead] = useState('')
@@ -35,13 +34,15 @@ function App() {
   const [name, setName] = useState(' ')
   const [equipmentDisplay, setEquipmentDisplay] = useState('')
   const [slotSelect, setSlotSelect] = useState('')
+  const [slot1, setSlot1] = useState(0)
+  const [slot2, setSlot2] = useState(0)
+  const [slot3, setSlot3] = useState(0)
 
   //On load
   useEffect(() =>
   {
     setLoading(true)
     const newUrl = BASE_URL + urlModifier
-    setSearchUrl(newUrl)
     const equipment_request = axios(
     {
       method:'GET',
@@ -64,7 +65,6 @@ function App() {
     setLoading(true)
     let cancel
     const newUrl = BASE_URL + urlModifier
-    setSearchUrl(newUrl)
     axios(
     {
       method:'GET',
@@ -73,7 +73,26 @@ function App() {
       cancelToken : new axios.CancelToken(c => cancel = c)
     })
     .then(res =>{
-      const t_results = res.data.filter(result => result.name.toLowerCase().indexOf(name.toLowerCase()) != -1)
+      let t_results = res.data.filter(result => 
+        result.name.toLowerCase().indexOf(name.toLowerCase()) != -1)
+        console.log("slot1:" + slot1)
+        console.log("slot2:" + slot2)
+        console.log("slot3:" + slot3)
+      if(slot1 > 0)
+        {
+          t_results = t_results.filter(result => 
+            result.slots[0].rank >= slot1)
+        }
+      if(slot2 > 0)
+        {
+          t_results = t_results.filter(result => 
+          result.slots[1].rank >= slot2)
+        }
+      if(slot3 > 0)
+        {
+          t_results = t_results.filter(result => 
+          result.slots[2].rank >= slot3)
+        }
       setResults(t_results)
       setLoading(false)
     })
@@ -83,7 +102,7 @@ function App() {
   })
     render()
     return () => cancel()
-  }, [searchQuery, name, type])
+  }, [searchQuery, name, type, slot1, slot2, slot3])
 
   //render
   return (
@@ -124,6 +143,9 @@ function App() {
         setDecos={setDecos}
       />
       <SearchBar
+        slot1={slot1}
+        slot2={slot2}
+        slot3={slot3}
         type={type}
         dbSkills={dbSkills}
         urlModifier={urlModifier}
@@ -132,6 +154,9 @@ function App() {
         setSearchQuery={setSearchQuery}
         setName={setName}
         setEquipmentDisplay={setEquipmentDisplay}
+        setSlot1={setSlot1}
+        setSlot2={setSlot2}
+        setSlot3={setSlot3}
       />
       {
         equipmentDisplay == '' ? <div></div> :

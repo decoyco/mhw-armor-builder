@@ -12,10 +12,10 @@ export default function BaseStatSearch(props) {
     function handleOnChange(e)
     {
         let value = e.target.value
-        if(value == "" || value <= 0)
+        if(value === "" || value <= 0)
             value = "0"
         setSelectValue(e.target.value)
-        const query = urlModifier=='armor' ? ',"defense.base":{"$gt":' + value + '}' : ',"attack.display":{"$gt":' + value + '}'
+        const query = urlModifier==='armor' ? ',"defense.base":{"$gt":' + value + '}' : ',"attack.display":{"$gt":' + value + '}'
         setBaseStatQuery(query)
     }
 
@@ -39,7 +39,7 @@ export default function BaseStatSearch(props) {
     return (
         <>
         <div>
-            <label>{urlModifier == 'armor' ? "Base Defense:" : "Base Attack:"}</label>
+            <label>{urlModifier === 'armor' ? "Base Defense:" : "Base Attack:"}</label>
             <input defaultValue="0" onChange={handleOnChange} type="number"></input>
         </div>
         </>

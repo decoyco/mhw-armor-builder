@@ -5,11 +5,15 @@ import RankSelect from './RankSelect'
 import NameSearch from './NameSearch'
 import SkillSelect from './SkillSelect'
 import ElementSearch from './ElementSearch'
+import SlotSelect from './SlotSelect'
 import { render } from '@testing-library/react'
 
 export default function SearchBar(props) {
     //props
     const {
+        slot1,
+        slot2,
+        slot3,
         type,
         dbSkills,
         urlModifier,
@@ -17,7 +21,10 @@ export default function SearchBar(props) {
         setUrlModifier,
         setSearchQuery,
         setName,
-        setEquipmentDisplay
+        setEquipmentDisplay,
+        setSlot1,
+        setSlot2,
+        setSlot3,
     } = props
     //states
     const [baseStatQuery, setBaseStatQuery] = useState('')
@@ -26,13 +33,14 @@ export default function SearchBar(props) {
     const [nameQuery, setNameQuery] = useState('')
     const [skillQuery, setSkillQuery] = useState('')
     const [elementQuery, setElementQuery] = useState('')
+    const [slotQuery, setSlotQuery] = useState('')
 
     useEffect(() =>
     {
-        const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery + elementQuery + '}'
+        const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery + elementQuery + slotQuery +'}'
         console.log("query: " + query)
         setSearchQuery(query)
-    }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery, elementQuery])
+    }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery, elementQuery, slotQuery])
 
     useEffect(() =>
     {
@@ -44,6 +52,10 @@ export default function SearchBar(props) {
         setBaseStatQuery('')
         setElementQuery('')
         setEquipmentDisplay('')
+        setSlotQuery('')
+        setSlot1(0)
+        setSlot2(0)
+        setSlot3(0)
     }, [urlModifier])
 
     return (
@@ -53,12 +65,9 @@ export default function SearchBar(props) {
         {urlModifier != 'charms' && <NameSearch setName={setName}/>}
         {urlModifier=='armor' && <RankSelect setRankQuery={setRankQuery}/>}
         {(urlModifier=='armor' || urlModifier=='charms' || urlModifier=='decorations') && <SkillSelect dbSkills={dbSkills} urlModifier={urlModifier} setSkillQuery={setSkillQuery}/>}
-        {
-        //<SlotSelect /> IN PROGRESS, BUG FOUND http://mhw-db.com/armor?q={"$and":[{"slots.rank":2},{"slots.rank":1}]}
-        }
+        {(urlModifier =='armor' || urlModifier=='weapons') &&
+        <SlotSelect slot1={slot1} slot2={slot2} slot3={slot3} setSlot1={setSlot1} setSlot2={setSlot2} setSlot3={setSlot3} setSlotQuery={setSlotQuery}/>}
         {(urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>}
-        {//<ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /><ResistanceSearch /> 
-        }
         {urlModifier=='weapons' && <ElementSearch urlModifier={urlModifier} setElementQuery={setElementQuery}/>}
         
         </>

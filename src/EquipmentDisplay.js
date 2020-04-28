@@ -42,6 +42,13 @@ export default function EquipmentDisplay(props) {
                      '(' + equipmentDisplay.elements[0].damage + ')' :
                         equipmentDisplay.elements[0].damage}</div>:
                         <></>)}
+                <div>
+                    Slots:
+                    {equipmentDisplay.slots.map(slot =>
+                    (
+                        <li key={Math.random()}>Lv{slot.rank}</li>
+                    ))}
+                </div>
                 </>
             }
             {
@@ -56,7 +63,7 @@ export default function EquipmentDisplay(props) {
                 </div>
             }
             {
-                (urlModifier == 'decorations' && equipmentDisplay.slot)
+                (urlModifier === 'decorations' && equipmentDisplay.slot)
                 &&
                 <div>
                 Skills:

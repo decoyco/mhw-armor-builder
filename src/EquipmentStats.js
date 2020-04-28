@@ -61,7 +61,6 @@ export default function EquipmentStats(props) {
     const [hidden, setHidden] = useState(false)
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
-    const [skillValue, setSkillValue] = useState('')
 
     useEffect(() => {
         let temp_skills = new Map();
@@ -121,8 +120,8 @@ export default function EquipmentStats(props) {
         <>
             <h2>Equipped</h2>
             <div>
-                Weapon: {weapon.name} 
-                {(weapon.name &&<button onClick={handleOnX} value="weapon">X</button>)}
+                Weapon: 
+                {(weapon.name &&<button onClick={handleOnX} value="weapon">{weapon.name} </button>)}
                 {(weaponSlots &&
                     [...weaponSlots.keys()].map(slot=>
                     (
@@ -131,8 +130,8 @@ export default function EquipmentStats(props) {
                 )}
             </div>
             <div>
-                Head: {head.name} 
-                {(head.name && <button onClick={handleOnX} value="head">X</button>)}
+                Head: 
+                {(head.name && <button onClick={handleOnX} value="head">{head.name} </button>)}
                 {(headSlots &&
                     [...headSlots.keys()].map(slot=>
                     (
@@ -141,8 +140,8 @@ export default function EquipmentStats(props) {
                 )}
             </div>
             <div>
-                Chest: {chest.name} 
-                {(chest.name && <button onClick={handleOnX} value="chest">X</button>)}
+                Chest: 
+                {(chest.name && <button onClick={handleOnX} value="chest">{chest.name} </button>)}
                 {(chestSlots &&
                     [...chestSlots.keys()].map(slot=>
                     (
@@ -151,8 +150,8 @@ export default function EquipmentStats(props) {
                 )}
             </div>
             <div>
-                Gloves: {gloves.name} 
-                {(gloves.name && <button onClick={handleOnX} value="gloves">X</button>)}
+                Gloves: 
+                {(gloves.name && <button onClick={handleOnX} value="gloves">{gloves.name} </button>)}
                 {(glovesSlots &&
                     [...glovesSlots.keys()].map(slot=>
                     (
@@ -161,8 +160,8 @@ export default function EquipmentStats(props) {
                 )}
             </div>
             <div>
-                Waist: {waist.name} 
-                {(waist.name && <button onClick={handleOnX} value="waist">X</button>)}
+                Waist: 
+                {(waist.name && <button onClick={handleOnX} value="waist">{waist.name} </button>)}
                 {(waistSlots &&
                     [...waistSlots.keys()].map(slot=>
                     (
@@ -171,8 +170,8 @@ export default function EquipmentStats(props) {
                 )}
             </div>
             <div>
-                Boots: {boots.name} 
-                {(boots.name && <button onClick={handleOnX} value="boots">X</button>)}
+                Boots: 
+                {(boots.name && <button onClick={handleOnX} value="boots">{boots.name} </button>)}
                 {(bootsSlots &&
                     [...bootsSlots.keys()].map(slot=>
                     (

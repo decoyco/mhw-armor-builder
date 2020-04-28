@@ -13,10 +13,10 @@ export default function SkillSelect(props) {
 
     useEffect(() => {
         let query = ''
-        if(skill != "" && skillLevel >= 0)
+        if(skill !== "" && skillLevel >= 0)
         {
-            query = (urlModifier=='charms' ? ',"ranks.' : ',"') + 'skills.skill":' + skill +
-                    (urlModifier=='charms' ? '' : ',"skills.level":{"$gte":' + skillLevel + '}') 
+            query = (urlModifier==='charms' ? ',"ranks.' : ',"') + 'skills.skill":' + skill +
+                    (urlModifier==='charms' ? '' : ',"skills.level":{"$gte":' + skillLevel + '}') 
         }
         setSkillQuery(query)
     }, [skill, skillLevel, urlModifier])
@@ -28,7 +28,7 @@ export default function SkillSelect(props) {
 
     function handleSkillLevelChange(e)
     {
-        if(e.target.value != "")
+        if(e.target.value !== "")
             setSkillLevel(e.target.value)
     }
 
@@ -43,7 +43,7 @@ export default function SkillSelect(props) {
                    return <option key={skill.id} value={skill.id}>{skill.name}</option>
                 })}
             </select>
-            {urlModifier != "charms" && <input onChange={handleSkillLevelChange} type="number" defaultValue="0"></input>}
+            {urlModifier !== "charms" && <input onChange={handleSkillLevelChange} type="number" defaultValue="0"></input>}
             </div>
         </>
     )
