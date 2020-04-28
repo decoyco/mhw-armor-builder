@@ -54,19 +54,34 @@ export default function ResultList(props) {
         {
             const equipType = slotSelect.split(' ')[0]
             const slotKey = slotSelect.split(' ')[1]
-            if(equipType == 'weapon')
-                weaponSlots.set(slotKey, equip)
-            else if(equipType == 'head')
-                headSlots.set(slotKey, equip)
-            else if(equipType == 'chest')
-                chestSlots.set(slotKey, equip)
-            else if(equipType == 'gloves')
-                glovesSlots.set(slotKey, equip)
-            else if(equipType == 'waist')
-                waistSlots.set(slotKey, equip)
-            else if(equipType == 'boots')
-                bootsSlots.set(slotKey, equip)
-            setDecos([...decos, equip])
+            if(equip.slot <= slotKey.charAt(0))
+            {
+                if(equipType == 'weapon')
+                {
+                    weaponSlots.set(slotKey, equip)
+                }
+                else if(equipType == 'head')
+                {
+                    headSlots.set(slotKey, equip)
+                }
+                else if(equipType == 'chest')
+                {
+                    chestSlots.set(slotKey, equip)
+                }
+                else if(equipType == 'gloves')
+                {
+                    glovesSlots.set(slotKey, equip)
+                }
+                else if(equipType == 'waist')
+                {
+                    waistSlots.set(slotKey, equip)
+                }
+                else if(equipType == 'boots')
+                {
+                    bootsSlots.set(slotKey, equip)
+                }
+                setDecos([...decos, equip])
+            }
         }
         else
         {

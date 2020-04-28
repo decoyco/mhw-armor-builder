@@ -72,7 +72,12 @@ export default function EquipmentStats(props) {
         [...t_decoSkills.keys()].map(skill=>
             {
                 temp_skills.set(skill, temp_skills.get(skill) ? temp_skills.get(skill) + t_decoSkills.get(skill) : t_decoSkills.get(skill))
-            })
+            });
+        [...temp_skills.keys()].map(skill=>
+            {
+                const searchedSkill = dbSkills.filter(res => (res.name == skill))[0]
+                temp_skills.set(skill, temp_skills.get(skill) > searchedSkill.ranks.length ? searchedSkill.ranks.length + '(+' + parseInt(temp_skills.get(skill) - searchedSkill.ranks.length) + ')' : temp_skills.get(skill))
+            });
         setSkills(temp_skills);
 
         setDefense(t_defense)
@@ -114,25 +119,7 @@ export default function EquipmentStats(props) {
 
     return (
         <>
-            <div>
-                Defense: {defense}
-            </div>
-            <div>
-                Attack: {attack}
-            </div>
-            <div>
-                {(element !== '' && elementValue !== 0) && element.charAt(0).toUpperCase() + element.slice(1) + ' :' + elementValue + (hidden ? "(Hidden)" : '')}
-            </div>
-            <div>
-                Affinity: {affinity}%
-            </div>
-            <div>
-                Skills:
-                {[...skills.keys()].map(skill =>
-                (
-                    <li key={skill}>{skill} : {skills.get(skill)}</li>
-                ))}
-            </div>
+            <h2>Equipped</h2>
             <div>
                 Weapon: {weapon.name} 
                 {(weapon.name &&<button onClick={handleOnX} value="weapon">X</button>)}
@@ -197,6 +184,26 @@ export default function EquipmentStats(props) {
                 Charm: {charm.name} 
                 {(charm.name && <button onClick={handleOnX} value="charm">X</button>)}
             </div>
+            <div>
+                Attack: {attack}
+            </div>
+            <div>
+                {(element !== '' && elementValue !== 0) && element.charAt(0).toUpperCase() + element.slice(1) + ' :' + elementValue + (hidden ? "(Hidden)" : '')}
+            </div>
+            <div>
+                Affinity: {affinity}%
+            </div>
+            <div>
+                Defense: {defense}
+            </div>
+            <div>
+                Skills:
+                {[...skills.keys()].map(skill =>
+                (
+                    <li key={skill}>{skill} : {skills.get(skill)}</li>
+                ))}
+            </div>
+            
         </>
     )
 }

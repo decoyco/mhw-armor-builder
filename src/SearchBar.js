@@ -48,6 +48,7 @@ export default function SearchBar(props) {
 
     return (
         <>
+        <h2>Search</h2>
         <TypeSelect setType={setType} setUrlModifier={setUrlModifier} setTypeQuery={setTypeQuery}/>
         {urlModifier != 'charms' && <NameSearch setName={setName}/>}
         {urlModifier=='armor' && <RankSelect setRankQuery={setRankQuery}/>}
