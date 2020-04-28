@@ -16,7 +16,6 @@ function App() {
   const [searchUrl, setSearchUrl] = useState([BASE_URL])
   const [urlModifier, setUrlModifier] = useState(['armor'])
   const [searchQuery, setSearchQuery] = useState('{"type":"head"}')
-  const [skills, setSkills] = useState([''])
   const [head, setHead] = useState('')
   const [chest, setChest] = useState('')
   const [gloves, setGloves] = useState('')
@@ -24,11 +23,18 @@ function App() {
   const [boots, setBoots] = useState('')
   const [weapon, setWeapon] = useState('')
   const [charm, setCharm] = useState('')
-  const [decos, setDecos] = useState([])
-  const [slots, setSlots] = useState(new Map())
+  const [skills, setSkills] = useState(new Map())
+  const [weaponSlots, setWeaponSlots] = useState(new Map())
+  const [headSlots, setHeadSlots] = useState(new Map())
+  const [chestSlots, setChestSlots] = useState(new Map())
+  const [glovesSlots, setGlovesSlots] = useState(new Map())
+  const [waistSlots, setWaistSlots] = useState(new Map())
+  const [bootsSlots, setBootsSlots] = useState(new Map())
   const [dbSkills, setDbSkills] = useState([])
+  const [decos, setDecos] = useState([])
   const [name, setName] = useState(' ')
   const [equipmentDisplay, setEquipmentDisplay] = useState('')
+  const [slotSelect, setSlotSelect] = useState('')
 
   //On load
   useEffect(() =>
@@ -77,7 +83,7 @@ function App() {
   })
     render()
     return () => cancel()
-  }, [searchQuery, name])
+  }, [searchQuery, name, type])
 
   //render
   return (
@@ -85,7 +91,13 @@ function App() {
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <EquipmentStats 
         decos={decos}
-        slots={slots}
+        skills={skills}
+        weaponSlots={weaponSlots}
+        headSlots={headSlots}
+        chestSlots={chestSlots}
+        glovesSlots={glovesSlots}
+        waistSlots={waistSlots}
+        bootsSlots={bootsSlots}
         head={head}
         chest={chest}
         gloves={gloves}
@@ -94,7 +106,6 @@ function App() {
         weapon={weapon}
         charm={charm}
         dbSkills={dbSkills}
-        setSlots={setSlots}
         setWeapon={setWeapon}
         setHead={setHead}
         setChest={setChest}
@@ -102,6 +113,15 @@ function App() {
         setWaist={setWaist}
         setBoots={setBoots}
         setCharm={setCharm}
+        setWeaponSlots={setWeaponSlots}
+        setHeadSlots={setHeadSlots}
+        setChestSlots={setChestSlots}
+        setGlovesSlots={setGlovesSlots}
+        setWaistSlots={setWaistSlots}
+        setBootsSlots={setBootsSlots}
+        setSkills={setSkills}
+        setSlotSelect={setSlotSelect}
+        setDecos={setDecos}
       />
       <SearchBar
         type={type}
@@ -123,7 +143,14 @@ function App() {
       {
         loading ? <div>Loading...</div> :
         <ResultList 
-          slots={slots}
+          decos={decos}
+          weaponSlots={weaponSlots}
+          headSlots={headSlots}
+          chestSlots={chestSlots}
+          glovesSlots={glovesSlots}
+          waistSlots={waistSlots}
+          bootsSlots={bootsSlots}
+          slotSelect={slotSelect}
           urlModifier={urlModifier}
           type={type}
           results={results} 

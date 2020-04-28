@@ -4,6 +4,14 @@ import axios from 'axios'
 
 export default function EquipmentStats(props) {
     const {
+        decos,
+        skills,
+        weaponSlots,
+        headSlots,
+        chestSlots,
+        glovesSlots,
+        waistSlots,
+        bootsSlots,
         head,
         chest,
         gloves,
@@ -19,7 +27,15 @@ export default function EquipmentStats(props) {
         setWaist,
         setBoots,
         setCharm,
-        setWeapon
+        setWeapon,
+        setWeaponSlots,
+        setHeadSlots,
+        setChestSlots,
+        setGlovesSlots,
+        setWaistSlots,
+        setBootsSlots,
+        setSkills,
+        setSlotSelect,
     } = props
     
     const {
@@ -28,10 +44,16 @@ export default function EquipmentStats(props) {
         t_elementValue,
         t_hidden,
         t_defense,
-        t_skills,
         t_affinity,
-        t_slots
-    } = GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm, dbSkills)
+        t_weaponSlots,
+        t_headSlots,
+        t_chestSlots,
+        t_glovesSlots,
+        t_waistSlots,
+        t_bootsSlots,
+        t_armorSkills,
+        t_decoSkills
+    } = GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm,weaponSlots,headSlots,chestSlots,glovesSlots,waistSlots,bootsSlots,skills,decos, dbSkills)
 
     const [attack, setAttack] = useState(0)
     const [element, setElement] = useState('')
@@ -39,15 +61,19 @@ export default function EquipmentStats(props) {
     const [hidden, setHidden] = useState(false)
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
-    const [skills, setSkills] = useState(new Map())
     const [skillValue, setSkillValue] = useState('')
 
     useEffect(() => {
-        
-        [...t_skills.keys()].map(skill =>{
-            const db_skill = dbSkills.filter(s => s.name == skill)
-            setSkillValue((t_skills.get(skill) > db_skill[0].ranks.length) ? db_skill[0].ranks.length.toString() + '(+' + (t_skills.get(skill) - db_skill[0].ranks.length).toString() + ')' : t_skills.get(skill))
-        })
+        let temp_skills = new Map();
+        [...t_armorSkills.keys()].map(skill=>
+            {
+                temp_skills.set(skill, t_armorSkills.get(skill))
+            });
+        [...t_decoSkills.keys()].map(skill=>
+            {
+                temp_skills.set(skill, temp_skills.get(skill) ? temp_skills.get(skill) + t_decoSkills.get(skill) : t_decoSkills.get(skill))
+            })
+        setSkills(temp_skills);
 
         setDefense(t_defense)
         setAttack(t_attack)
@@ -55,9 +81,13 @@ export default function EquipmentStats(props) {
         setElementValue(t_elementValue)
         setHidden(t_hidden)
         setAffinity(t_affinity)
-        setSkills(t_skills)
-        setSlots(t_slots)
-    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_skills, t_slots])
+        setWeaponSlots(t_weaponSlots)
+        setHeadSlots(t_headSlots)
+        setChestSlots(t_chestSlots)
+        setGlovesSlots(t_glovesSlots)
+        setWaistSlots(t_waistSlots)
+        setBootsSlots(t_bootsSlots)
+    }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_armorSkills, t_decoSkills, t_weaponSlots, t_headSlots, t_chestSlots, t_glovesSlots, t_waistSlots, t_bootsSlots])
 
     function handleOnX(e)
     {
@@ -75,6 +105,11 @@ export default function EquipmentStats(props) {
             setBoots('')
         if(e.target.value=='charm')
             setCharm('')
+    }
+
+    function handleOnSlotSelect(e)
+    {
+        setSlotSelect(e.target.value)
     }
 
     return (
@@ -95,32 +130,68 @@ export default function EquipmentStats(props) {
                 Skills:
                 {[...skills.keys()].map(skill =>
                 (
-                    <li key={skill}>{skill} : {skillValue}</li>
+                    <li key={skill}>{skill} : {skills.get(skill)}</li>
                 ))}
             </div>
             <div>
                 Weapon: {weapon.name} 
                 {(weapon.name &&<button onClick={handleOnX} value="weapon">X</button>)}
+                {(weaponSlots &&
+                    [...weaponSlots.keys()].map(slot=>
+                    (
+                        <button key={'weapon'+' '+slot} value={'weapon'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{weaponSlots.get(slot) != '' ? weaponSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Head: {head.name} 
                 {(head.name && <button onClick={handleOnX} value="head">X</button>)}
+                {(headSlots &&
+                    [...headSlots.keys()].map(slot=>
+                    (
+                        <button key={'head'+' '+slot} value={'head'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{headSlots.get(slot) != '' ? headSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Chest: {chest.name} 
                 {(chest.name && <button onClick={handleOnX} value="chest">X</button>)}
+                {(chestSlots &&
+                    [...chestSlots.keys()].map(slot=>
+                    (
+                        <button key={'chest'+' '+slot} value={'chest'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{chestSlots.get(slot) != '' ? chestSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Gloves: {gloves.name} 
                 {(gloves.name && <button onClick={handleOnX} value="gloves">X</button>)}
+                {(glovesSlots &&
+                    [...glovesSlots.keys()].map(slot=>
+                    (
+                        <button key={'gloves'+' '+slot} value={'gloves'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{glovesSlots.get(slot) != '' ? glovesSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Waist: {waist.name} 
                 {(waist.name && <button onClick={handleOnX} value="waist">X</button>)}
+                {(waistSlots &&
+                    [...waistSlots.keys()].map(slot=>
+                    (
+                        <button key={'waist'+' '+slot} value={'waist'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{waistSlots.get(slot) != '' ? waistSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Boots: {boots.name} 
                 {(boots.name && <button onClick={handleOnX} value="boots">X</button>)}
+                {(bootsSlots &&
+                    [...bootsSlots.keys()].map(slot=>
+                    (
+                        <button key={'boots'+' '+slot} value={'boots'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{bootsSlots.get(slot) != '' ? bootsSlots.get(slot).name : 'Empty'}</button>
+                    ))    
+                )}
             </div>
             <div>
                 Charm: {charm.name} 

@@ -2,15 +2,21 @@ import React, {useState, useEffect} from 'react'
 import { render } from '@testing-library/react'
 import axios from 'axios'
 
-export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm,decos, dbSkills) {
+export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm,weaponSlots,headSlots,chestSlots,glovesSlots,waistSlots,bootsSlots,skills,decos, dbSkills) {
     const [t_attack, setTAttack] = useState(0)
     const [t_defense, setTDefense] = useState(0)
     const [t_affinity, setTAffinity] = useState(0)
     const [t_elementValue, setTElementValue] = useState(0)
     const [t_element, setTElement] = useState('')
     const [t_hidden, setTHidden] = useState(false)
-    const [t_skills, setTSkills] = useState(new Map())
-    const [t_slots, setTSlots] = useState(new Map())
+    const [t_armorSkills, setTArmorSkills] = useState(new Map())
+    const [t_decoSkills, setTDecoSkills] = useState(new Map())
+    const [t_weaponSlots, setTWeaponSlots] = useState(new Map())
+    const [t_headSlots, setTHeadSlots] = useState(new Map())
+    const [t_chestSlots, setTChestSlots] = useState(new Map())
+    const [t_glovesSlots, setTGlovesSlots] = useState(new Map())
+    const [t_waistSlots, setTWaistSlots] = useState(new Map())
+    const [t_bootsSlots, setTBootsSlots] = useState(new Map())
 
     useEffect(() => {
         let temp_defense = 0
@@ -19,11 +25,12 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         let temp_elementValue = 0
         let temp_hidden = false
         let temp_skills = new Map()
-        let temp_slots = new Map()
-        temp_slots.set(4,0)
-        temp_slots.set(3,0)
-        temp_slots.set(2,0)
-        temp_slots.set(1,0)
+        let temp_weaponSlots = new Map()
+        let temp_headSlots = new Map()
+        let temp_chestSlots = new Map()
+        let temp_glovesSlots = new Map()
+        let temp_waistSlots = new Map()
+        let temp_bootsSlots = new Map()
         let temp_element = ''
         if(head !== '')
         {
@@ -35,7 +42,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(head.slots)
             head.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                    let i = 0
+                    while(temp_headSlots.has(slot.rank+''+i))
+                        i++
+                    temp_headSlots.set(slot.rank+''+i, '')
                 })
         }
         if(chest !== '')
@@ -48,7 +58,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(chest.slots)
             chest.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                    let i = 0
+                    while(temp_chestSlots.has(slot.rank+''+i))
+                        i++
+                    temp_chestSlots.set(slot.rank+''+i, '')
                 })
             
         }
@@ -62,7 +75,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(gloves.slots)
             gloves.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                    let i = 0
+                    while(temp_glovesSlots.has(slot.rank+''+i))
+                        i++
+                    temp_glovesSlots.set(slot.rank+''+i, '')
                 })
         }
         if(waist !== '')
@@ -75,7 +91,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(waist.slots)
             waist.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                    let i = 0
+                    while(temp_waistSlots.has(slot.rank+''+i))
+                        i++
+                    temp_waistSlots.set(slot.rank+''+i, '')
                 })
         } 
         if(boots !== '')
@@ -88,7 +107,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(boots.slots)
             boots.slots.map(slot =>
                 {
-                    temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                    let i = 0
+                    while(temp_bootsSlots.has(slot.rank+''+i))
+                        i++
+                    temp_bootsSlots.set(slot.rank+''+i, '')
                 })
         }
         if(weapon !== '')
@@ -105,7 +127,10 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
             if(weapon.slots)
                 weapon.slots.map(slot =>
                     {
-                        temp_slots.set(slot.rank, temp_slots.get(slot.rank) + 1)
+                        let i = 0
+                        while(temp_weaponSlots.has(slot.rank+''+i))
+                            i++
+                        temp_weaponSlots.set(slot.rank+''+i, '')
                     })
         }
         if(charm !== '')
@@ -116,15 +141,94 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 })
         }
 
-        setTSlots(temp_slots)
+        setTWeaponSlots(temp_weaponSlots)
+        setTHeadSlots(temp_headSlots)
+        setTChestSlots(temp_chestSlots)
+        setTGlovesSlots(temp_glovesSlots)
+        setTWaistSlots(temp_waistSlots)
+        setTBootsSlots(temp_bootsSlots)
         setTDefense(temp_defense)
         setTAttack(temp_attack)
         setTElement(temp_element)
         setTElementValue(temp_elementValue)
         setTHidden(temp_hidden)
-        setTSkills(temp_skills)
+        setTArmorSkills(temp_skills)
         setTAffinity(temp_affinity)
     }, [head,chest,gloves,waist,boots,weapon,charm])
+
+    useEffect(() => {
+        setTDecoSkills(new Map())
+        let temp_skills = new Map();
+        [...headSlots.keys()].map(slot=>
+            {
+                if(headSlots.get(slot))
+                {
+                    const deco = headSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            console.log(headSlots.get(slot))
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        [...chestSlots.keys()].map(slot=>
+            {
+                if(chestSlots.get(slot))
+                {
+                    const deco = chestSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        [...glovesSlots.keys()].map(slot=>
+            {
+                if(glovesSlots.get(slot))
+                {
+                    const deco = glovesSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        [...waistSlots.keys()].map(slot=>
+            {
+                if(waistSlots.get(slot))
+                {
+                    const deco = waistSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        [...bootsSlots.keys()].map(slot=>
+            {
+                if(bootsSlots.get(slot))
+                {
+                    const deco = bootsSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        [...weaponSlots.keys()].map(slot=>
+            {
+                if(weaponSlots.get(slot))
+                {
+                    const deco = weaponSlots.get(slot)
+                    deco.skills.map(skill =>
+                        {
+                            temp_skills.set(skill.skillName, temp_skills.get(skill.skillName) ? temp_skills.get(skill.skillName) + skill.level : skill.level)
+                        })
+                }
+            });
+        setTDecoSkills(temp_skills)
+        render()
+    }, [headSlots,chestSlots,glovesSlots,waistSlots,bootsSlots,weaponSlots,decos])
     return {
         t_attack,
         t_element,
@@ -132,8 +236,14 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         t_hidden,
         t_defense,
         t_affinity,
-        t_skills,
-        t_slots
+        t_weaponSlots,
+        t_headSlots,
+        t_chestSlots,
+        t_glovesSlots,
+        t_waistSlots,
+        t_bootsSlots,
+        t_armorSkills,
+        t_decoSkills
     }
 }
 
