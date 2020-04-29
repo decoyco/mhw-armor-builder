@@ -35,10 +35,11 @@ function App() {
   const [slot1, setSlot1] = useState(0)
   const [slot2, setSlot2] = useState(0)
   const [slot3, setSlot3] = useState(0)
-
+  
   //On load
   useEffect(() =>
   {
+    document.title = 'MHW Armor Builder'
     setLoading(true)
     const newUrl = BASE_URL + urlModifier
     let cancel
