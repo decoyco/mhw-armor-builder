@@ -11,7 +11,7 @@ export default function BaseStatSearch(props) {
 
     function handleOnChange(e)
     {
-        let value = e.target.value
+        let value = parseInt(e.target.value)
         if(value === "" || value <= 0)
             value = "0"
         setSelectValue(e.target.value)

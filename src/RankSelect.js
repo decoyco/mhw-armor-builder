@@ -18,7 +18,7 @@ export default function RankSelect(props) {
     return (
         <>
         <div>
-            <label>Rank:</label>
+            <label>Rank: </label>
             <select onChange={handleOnChange}>
                 <option value=""></option>
                 <option value="low">Low</option>

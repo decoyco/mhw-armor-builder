@@ -43,7 +43,7 @@ export default function TypeSelect(props) {
     }
     return (
         <>
-        <label>Type</label>
+        <label>Type: </label>
         <select onChange={handleOnChange} >
             <option  value="head">Head</option>
             <option  value="chest">Chest</option>

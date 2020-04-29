@@ -13,7 +13,7 @@ export default function NameSearch(props) {
     return (
         <>
         <div>
-            <label>Name:</label>
+            <label>Name: </label>
             <input type="text" onChange={handleOnChange}></input>
         </div>
         </>

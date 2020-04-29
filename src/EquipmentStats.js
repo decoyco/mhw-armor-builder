@@ -125,67 +125,67 @@ export default function EquipmentStats(props) {
             <h2>Equipped</h2>
             <div>
                 Weapon: 
-                {(weapon.name &&<button onClick={handleOnX} value="weapon">{weapon.name} </button>)}
+                {(weapon.name &&<button onClick={handleOnX} class="equip_armor_button" value="weapon">{weapon.name} </button>)}
                 {(weaponSlots &&
                     [...weaponSlots.keys()].map(slot=>
                     (
-                        <li key={'weapon'+' '+slot}><button  value={'weapon'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{weaponSlots.get(slot) != '' ? weaponSlots.get(slot).name : 'Empty'}</button></li>
+                        <li key={'weapon'+' '+slot}><button class="equip_armor_button" value={'weapon'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{weaponSlots.get(slot) != '' ? weaponSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
                 Head: 
-                {(head.name && <button onClick={handleOnX} value="head">{head.name} </button>)}
+                {(head.name && <button onClick={handleOnX} class="equip_armor_button" value="head">{head.name} </button>)}
                 {(headSlots &&
                     [...headSlots.keys()].map(slot=>
                     (
-                        <li key={'head'+' '+slot}><button  value={'head'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{headSlots.get(slot) != '' ? headSlots.get(slot).name : 'Empty'}</button></li>
+                        <li key={'head'+' '+slot}><button class="equip_armor_button" value={'head'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{headSlots.get(slot) != '' ? headSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
                 Chest: 
-                {(chest.name && <button onClick={handleOnX} value="chest">{chest.name} </button>)}
+                {(chest.name && <button onClick={handleOnX} class="equip_armor_button" value="chest">{chest.name} </button>)}
                 {(chestSlots &&
                     [...chestSlots.keys()].map(slot=>
                     (
-                       <li key={'chest'+' '+slot}><button  value={'chest'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{chestSlots.get(slot) != '' ? chestSlots.get(slot).name : 'Empty'}</button></li>
+                       <li key={'chest'+' '+slot}><button class="equip_armor_button" value={'chest'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{chestSlots.get(slot) != '' ? chestSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
                 Gloves: 
-                {(gloves.name && <button onClick={handleOnX} value="gloves">{gloves.name} </button>)}
+                {(gloves.name && <button onClick={handleOnX} class="equip_armor_button" value="gloves">{gloves.name} </button>)}
                 {(glovesSlots &&
                     [...glovesSlots.keys()].map(slot=>
                     (
-                        <li key={'gloves'+' '+slot}><button key={'gloves'+' '+slot} value={'gloves'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{glovesSlots.get(slot) != '' ? glovesSlots.get(slot).name : 'Empty'}</button></li>
+                        <li key={'gloves'+' '+slot}><button class="equip_armor_button" key={'gloves'+' '+slot} value={'gloves'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{glovesSlots.get(slot) != '' ? glovesSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
                 Waist: 
-                {(waist.name && <button onClick={handleOnX} value="waist">{waist.name} </button>)}
+                {(waist.name && <button onClick={handleOnX} class="equip_armor_button" value="waist">{waist.name} </button>)}
                 {(waistSlots &&
                     [...waistSlots.keys()].map(slot=>
                     (
-                        <li key={'waist'+' '+slot}><button  value={'waist'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{waistSlots.get(slot) != '' ? waistSlots.get(slot).name : 'Empty'}</button></li>
+                        <li key={'waist'+' '+slot}><button class="equip_armor_button" value={'waist'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{waistSlots.get(slot) != '' ? waistSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
                 Boots: 
-                {(boots.name && <button onClick={handleOnX} value="boots">{boots.name} </button>)}
+                {(boots.name && <button onClick={handleOnX} class="equip_armor_button" value="boots">{boots.name} </button>)}
                 {(bootsSlots &&
                     [...bootsSlots.keys()].map(slot=>
                     (
-                        <li key={'boots'+' '+slot}><button  value={'boots'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{bootsSlots.get(slot) != '' ? bootsSlots.get(slot).name : 'Empty'}</button></li>
+                        <li key={'boots'+' '+slot}><button class="equip_armor_button" value={'boots'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{bootsSlots.get(slot) != '' ? bootsSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
             <div>
-                Charm: {charm.name} 
-                {(charm.name && <button onClick={handleOnX} value="charm">X</button>)}
+                Charm: 
+                {(charm.name && <button onClick={handleOnX} class="equip_armor_button" value="charm">{charm.name} </button>)}
             </div>
             <div>
                 Attack: {attack}
@@ -199,20 +199,20 @@ export default function EquipmentStats(props) {
             <div>
                 Defense: {defense}
             </div>
-            <div>
-                Skills:
+            <div class="skills_window">
+                <h2>Skills: </h2>
                 {[...skills.keys()].map(skill =>
                 (
                     <li key={skill}>{skill} : {skills.get(skill)}</li>
                 ))}
+                {
+                equipmentDisplay == '' ? <div></div> :
+                <EquipmentDisplay 
+                urlModifier={urlModifier}
+                equipmentDisplay={equipmentDisplay}
+                />
+                }
             </div>
-            {
-            equipmentDisplay == '' ? <div></div> :
-            <EquipmentDisplay 
-            urlModifier={urlModifier}
-            equipmentDisplay={equipmentDisplay}
-            />
-        }
         </div>
         </>
     )

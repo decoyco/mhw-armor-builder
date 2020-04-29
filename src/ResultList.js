@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function ResultList(props) {
     const {
+        loading,
         decos,
         weaponSlots,
         headSlots,
@@ -95,16 +96,19 @@ export default function ResultList(props) {
     }
     return (
         <>
+        <div class="result_window">
             {
+                loading ? <label>Loading...</label> :
                 results.map(equipment =>
                 (
                     <div key={equipment.id}>
-                        <button onClick={handleOnClick} value={JSON.stringify(equipment)} onMouseOver={handleOnMouseOver}>
+                        <button class="result_button" onClick={handleOnClick} value={JSON.stringify(equipment)} onMouseOver={handleOnMouseOver}>
                             {equipment.name}                
                         </button>
                     </div>
                 ))
             }
+        </div>
         </>
     )
 }

@@ -35,15 +35,16 @@ export default function SkillSelect(props) {
     return (
         <>
             <div>
-            <label>Skill:</label>
+            <label>Skill: </label>
             <select onChange={handleSkillChange}>
                 <option value="" selected="true"></option>
-                {dbSkills.map(skill =>
+                {
+                dbSkills.map(skill =>
                 {
                    return <option key={skill.id} value={skill.id}>{skill.name}</option>
                 })}
             </select>
-            {urlModifier !== "charms" && <input onChange={handleSkillLevelChange} type="number" defaultValue="0"></input>}
+            {(urlModifier !== "charms" && skill != '')&& <input onChange={handleSkillLevelChange} type="number" defaultValue="0"></input>}
             </div>
         </>
     )

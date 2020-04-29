@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import SearchBar from './SearchBar.js'
-import ResultList from './ResultList'
+import PageLayer from './PageLayer'
 import EquipmentStats from './EquipmentStats'
 import axios from 'axios'
 import { render } from '@testing-library/react';
@@ -12,7 +11,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [results, setResults] = useState([])
   const [type, setType] = useState(['head'])
-  const [urlModifier, setUrlModifier] = useState(['armor'])
+  const [urlModifier, setUrlModifier] = useState('armor')
   const [searchQuery, setSearchQuery] = useState('{"type":"head"}')
   const [head, setHead] = useState('')
   const [chest, setChest] = useState('')
@@ -143,7 +142,7 @@ function App() {
         setSlotSelect={setSlotSelect}
         setDecos={setDecos}
       />
-      <SearchBar
+      <PageLayer 
         slot1={slot1}
         slot2={slot2}
         slot3={slot3}
@@ -158,10 +157,46 @@ function App() {
         setSlot1={setSlot1}
         setSlot2={setSlot2}
         setSlot3={setSlot3}
+        loading={loading}
+        decos={decos}
+        weaponSlots={weaponSlots}
+        headSlots={headSlots}
+        chestSlots={chestSlots}
+        glovesSlots={glovesSlots}
+        waistSlots={waistSlots}
+        bootsSlots={bootsSlots}
+        slotSelect={slotSelect}
+        urlModifier={urlModifier}
+        results={results} 
+        setHead={setHead}
+        setChest={setChest}
+        setGloves={setGloves}
+        setWaist={setWaist}
+        setBoots={setBoots}
+        setWeapon={setWeapon}
+        setCharm={setCharm}
+        setDecos={setDecos}
       />
       {
-        loading ? <div>Loading...</div> :
-        <ResultList 
+        /* <SearchBar
+        slot1={slot1}
+        slot2={slot2}
+        slot3={slot3}
+        type={type}
+        dbSkills={dbSkills}
+        urlModifier={urlModifier}
+        setType={setType} 
+        setUrlModifier={setUrlModifier}
+        setSearchQuery={setSearchQuery}
+        setName={setName}
+        setEquipmentDisplay={setEquipmentDisplay}
+        setSlot1={setSlot1}
+        setSlot2={setSlot2}
+        setSlot3={setSlot3}
+        /> */
+      }
+        {/* <ResultList 
+          loading={loading}
           decos={decos}
           weaponSlots={weaponSlots}
           headSlots={headSlots}
@@ -182,8 +217,7 @@ function App() {
           setCharm={setCharm}
           setEquipmentDisplay={setEquipmentDisplay}
           setDecos={setDecos}
-        />
-      }
+        /> */}
       
     </>
   );
