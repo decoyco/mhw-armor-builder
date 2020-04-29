@@ -60,6 +60,7 @@ export default function SearchBar(props) {
 
     return (
         <>
+        <div class="search_window">
         <h2>Search</h2>
         <TypeSelect setType={setType} setUrlModifier={setUrlModifier} setTypeQuery={setTypeQuery}/>
         {urlModifier != 'charms' && <NameSearch setName={setName}/>}
@@ -69,7 +70,7 @@ export default function SearchBar(props) {
         <SlotSelect slot1={slot1} slot2={slot2} slot3={slot3} setSlot1={setSlot1} setSlot2={setSlot2} setSlot3={setSlot3} setSlotQuery={setSlotQuery}/>}
         {(urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>}
         {urlModifier=='weapons' && <ElementSearch urlModifier={urlModifier} setElementQuery={setElementQuery}/>}
-        
+        </div>
         </>
     )
 }
