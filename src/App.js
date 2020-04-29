@@ -41,11 +41,13 @@ function App() {
   {
     setLoading(true)
     const newUrl = BASE_URL + urlModifier
+    let cancel
     const equipment_request = axios(
     {
       method:'GET',
       params: {q: searchQuery},
       url: newUrl,
+      cancelToken : new axios.CancelToken(c => cancel = c)
     })
     const skills_request = axios.get(BASE_URL+'skills')
 
@@ -55,6 +57,11 @@ function App() {
     })).then(()=>{
       setLoading(false)
     })
+    .catch(e => {
+      if(axios.isCancel(e)) return
+  })
+    render()
+    return () => cancel()
   }, [])
 
   //On change to queries
