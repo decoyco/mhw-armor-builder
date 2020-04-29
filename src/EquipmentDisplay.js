@@ -6,7 +6,7 @@ export default function EquipmentDisplay(props) {
         equipmentDisplay
     } = props
     return (
-        <div>
+        <div class="view_equip_window">
             <h3>{equipmentDisplay.name}</h3>
             {
                 (urlModifier == 'armor' && equipmentDisplay.defense) 

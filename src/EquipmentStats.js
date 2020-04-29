@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import GetEquipmentStats from './GetEquipmentStats'
+import EquipmentDisplay from './EquipmentDisplay'
 import axios from 'axios'
 
 export default function EquipmentStats(props) {
     const {
+        equipmentDisplay,
+        urlModifier,
         decos,
         skills,
         weaponSlots,
@@ -118,6 +121,7 @@ export default function EquipmentStats(props) {
 
     return (
         <>
+        <div class="equipped_window">
             <h2>Equipped</h2>
             <div>
                 Weapon: 
@@ -125,7 +129,7 @@ export default function EquipmentStats(props) {
                 {(weaponSlots &&
                     [...weaponSlots.keys()].map(slot=>
                     (
-                        <button key={'weapon'+' '+slot} value={'weapon'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{weaponSlots.get(slot) != '' ? weaponSlots.get(slot).name : 'Empty'}</button>
+                        <li key={'weapon'+' '+slot}><button  value={'weapon'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{weaponSlots.get(slot) != '' ? weaponSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -135,7 +139,7 @@ export default function EquipmentStats(props) {
                 {(headSlots &&
                     [...headSlots.keys()].map(slot=>
                     (
-                        <button key={'head'+' '+slot} value={'head'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{headSlots.get(slot) != '' ? headSlots.get(slot).name : 'Empty'}</button>
+                        <li key={'head'+' '+slot}><button  value={'head'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{headSlots.get(slot) != '' ? headSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -145,7 +149,7 @@ export default function EquipmentStats(props) {
                 {(chestSlots &&
                     [...chestSlots.keys()].map(slot=>
                     (
-                        <button key={'chest'+' '+slot} value={'chest'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{chestSlots.get(slot) != '' ? chestSlots.get(slot).name : 'Empty'}</button>
+                       <li key={'chest'+' '+slot}><button  value={'chest'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{chestSlots.get(slot) != '' ? chestSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -155,7 +159,7 @@ export default function EquipmentStats(props) {
                 {(glovesSlots &&
                     [...glovesSlots.keys()].map(slot=>
                     (
-                        <button key={'gloves'+' '+slot} value={'gloves'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{glovesSlots.get(slot) != '' ? glovesSlots.get(slot).name : 'Empty'}</button>
+                        <li key={'gloves'+' '+slot}><button key={'gloves'+' '+slot} value={'gloves'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{glovesSlots.get(slot) != '' ? glovesSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -165,7 +169,7 @@ export default function EquipmentStats(props) {
                 {(waistSlots &&
                     [...waistSlots.keys()].map(slot=>
                     (
-                        <button key={'waist'+' '+slot} value={'waist'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{waistSlots.get(slot) != '' ? waistSlots.get(slot).name : 'Empty'}</button>
+                        <li key={'waist'+' '+slot}><button  value={'waist'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{waistSlots.get(slot) != '' ? waistSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -175,7 +179,7 @@ export default function EquipmentStats(props) {
                 {(bootsSlots &&
                     [...bootsSlots.keys()].map(slot=>
                     (
-                        <button key={'boots'+' '+slot} value={'boots'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{bootsSlots.get(slot) != '' ? bootsSlots.get(slot).name : 'Empty'}</button>
+                        <li key={'boots'+' '+slot}><button  value={'boots'+' '+slot} onClick={handleOnSlotSelect}>Lv{slot.charAt(0)} :{bootsSlots.get(slot) != '' ? bootsSlots.get(slot).name : 'Empty'}</button></li>
                     ))    
                 )}
             </div>
@@ -202,7 +206,14 @@ export default function EquipmentStats(props) {
                     <li key={skill}>{skill} : {skills.get(skill)}</li>
                 ))}
             </div>
-            
+            {
+            equipmentDisplay == '' ? <div></div> :
+            <EquipmentDisplay 
+            urlModifier={urlModifier}
+            equipmentDisplay={equipmentDisplay}
+            />
+        }
+        </div>
         </>
     )
 }

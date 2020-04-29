@@ -32,7 +32,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         let temp_waistSlots = new Map()
         let temp_bootsSlots = new Map()
         let temp_element = ''
-        if(head !== '')
+        if(head != '')
         {
             temp_defense += head.defense.base
             head.skills.map(skill =>
@@ -48,7 +48,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                     temp_headSlots.set(slot.rank+''+i, '')
                 })
         }
-        if(chest !== '')
+        if(chest != '')
         {
             temp_defense += chest.defense.base
             chest.skills.map(skill =>
@@ -65,7 +65,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                 })
             
         }
-        if(gloves !== '')
+        if(gloves != '')
         {
             temp_defense += gloves.defense.base
             gloves.skills.map(skill =>
@@ -81,7 +81,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                     temp_glovesSlots.set(slot.rank+''+i, '')
                 })
         }
-        if(waist !== '')
+        if(waist != '')
         {
             temp_defense += waist.defense.base
             waist.skills.map(skill =>
@@ -97,7 +97,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                     temp_waistSlots.set(slot.rank+''+i, '')
                 })
         } 
-        if(boots !== '')
+        if(boots != '')
         {
             temp_defense += boots.defense.base
             boots.skills.map(skill =>
@@ -113,7 +113,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                     temp_bootsSlots.set(slot.rank+''+i, '')
                 })
         }
-        if(weapon !== '')
+        if(weapon != '')
         {
             temp_attack += weapon.attack.display
             if(weapon.attributes.affinity)
@@ -133,7 +133,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
                         temp_weaponSlots.set(slot.rank+''+i, '')
                     })
         }
-        if(charm !== '')
+        if(charm != '')
         {
             charm.ranks[charm.ranks.length-1].skills.map(skill =>
                 {

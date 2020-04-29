@@ -3,7 +3,6 @@ import './App.css';
 import SearchBar from './SearchBar.js'
 import ResultList from './ResultList'
 import EquipmentStats from './EquipmentStats'
-import EquipmentDisplay from './EquipmentDisplay'
 import axios from 'axios'
 import { render } from '@testing-library/react';
 
@@ -109,6 +108,8 @@ function App() {
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <EquipmentStats 
+        equipmentDisplay={equipmentDisplay}
+        urlModifier={urlModifier}
         decos={decos}
         skills={skills}
         weaponSlots={weaponSlots}
@@ -158,13 +159,6 @@ function App() {
         setSlot2={setSlot2}
         setSlot3={setSlot3}
       />
-      {
-        equipmentDisplay == '' ? <div></div> :
-        <EquipmentDisplay 
-          urlModifier={urlModifier}
-          equipmentDisplay={equipmentDisplay}
-        />
-      }
       {
         loading ? <div>Loading...</div> :
         <ResultList 

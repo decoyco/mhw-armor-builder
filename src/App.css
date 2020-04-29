@@ -1,0 +1,38 @@
+@import 'style/variables.css';
+
+:root{
+    font-family: 'Arial';
+    background-color: var(--color-base);
+    color: var(--color-text-base);
+    z-index:1;
+}
+
+.equipped_window{
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    position:fixed;
+    right:1em;
+    z-index:2;
+    border-radius: 1rem;
+    padding: 1.5em;
+    padding-top: 0rem;
+    font-weight: bold;
+    border: solid;
+    border-width: thick;
+    border-color:rgb(17, 17, 17);
+}
+.view_equip_window{
+    background-color: var(--color-secondary);
+    color: var(--color-text-secondary);
+    position:absolute;
+    bottom:-17rem;
+    right:1em;
+    z-index:2;
+    border-radius: 1rem;
+    padding: 1.5em;
+    padding-top: 0rem;
+    font-weight: bold;
+    border: solid;
+    border-width: thick;
+    border-color:rgb(17, 17, 17);
+}
