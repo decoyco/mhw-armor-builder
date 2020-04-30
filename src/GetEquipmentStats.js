@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { render } from '@testing-library/react'
 import axios from 'axios'
 
+//Calculates all stats from current equipment and returns them as t_(STAT)
 export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,charm,weaponSlots,headSlots,chestSlots,glovesSlots,waistSlots,bootsSlots,skills,decos, dbSkills) {
     const [t_attack, setTAttack] = useState(0)
     const [t_defense, setTDefense] = useState(0)
@@ -18,6 +19,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
     const [t_waistSlots, setTWaistSlots] = useState(new Map())
     const [t_bootsSlots, setTBootsSlots] = useState(new Map())
 
+    //Calculates stats + EMPTY deco slots
     useEffect(() => {
         let temp_defense = 0
         let temp_attack = 0
@@ -156,6 +158,7 @@ export default function GetEquipmentStats(head,chest,gloves,waist,boots,weapon,c
         setTAffinity(temp_affinity)
     }, [head,chest,gloves,waist,boots,weapon,charm])
 
+    //Calculates skills from DECOS
     useEffect(() => {
         setTDecoSkills(new Map())
         let temp_skills = new Map();

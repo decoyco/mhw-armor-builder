@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { render } from '@testing-library/react'
-
+//Creates the query to search for Atk of Weapons, Def of armors
 export default function BaseStatSearch(props) {
     const {
         setBaseStatQuery,
@@ -15,6 +15,7 @@ export default function BaseStatSearch(props) {
         if(value === "" || value <= 0)
             value = "0"
         setSelectValue(e.target.value)
+        //if urlModifier is an armor , create query for armor defense, otherwise create query for weapon atk
         const query = urlModifier==='armor' ? ',"defense.base":{"$gt":' + value + '}' : ',"attack.display":{"$gt":' + value + '}'
         setBaseStatQuery(query)
     }

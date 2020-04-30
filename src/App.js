@@ -115,6 +115,7 @@ function App() {
     <>
       <h1>MONSTER HUNTER WORLD ARMOR BUILDER</h1>
       <EquipmentStats 
+        slotSelect={slotSelect}
         equipmentDisplay={equipmentDisplay}
         urlModifier={urlModifier}
         decos={decos}
@@ -185,48 +186,6 @@ function App() {
         setCharm={setCharm}
         setDecos={setDecos}
       />
-      {
-        /* <SearchBar
-        slot1={slot1}
-        slot2={slot2}
-        slot3={slot3}
-        type={type}
-        dbSkills={dbSkills}
-        urlModifier={urlModifier}
-        setType={setType} 
-        setUrlModifier={setUrlModifier}
-        setSearchQuery={setSearchQuery}
-        setName={setName}
-        setEquipmentDisplay={setEquipmentDisplay}
-        setSlot1={setSlot1}
-        setSlot2={setSlot2}
-        setSlot3={setSlot3}
-        /> */
-      }
-        {/* <ResultList 
-          loading={loading}
-          decos={decos}
-          weaponSlots={weaponSlots}
-          headSlots={headSlots}
-          chestSlots={chestSlots}
-          glovesSlots={glovesSlots}
-          waistSlots={waistSlots}
-          bootsSlots={bootsSlots}
-          slotSelect={slotSelect}
-          urlModifier={urlModifier}
-          type={type}
-          results={results} 
-          setHead={setHead}
-          setChest={setChest}
-          setGloves={setGloves}
-          setWaist={setWaist}
-          setBoots={setBoots}
-          setWeapon={setWeapon}
-          setCharm={setCharm}
-          setEquipmentDisplay={setEquipmentDisplay}
-          setDecos={setDecos}
-        /> */}
-      
     </>
   );
 }

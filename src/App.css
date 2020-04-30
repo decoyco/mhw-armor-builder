@@ -75,6 +75,7 @@
 .equip_armor_button:hover{
     background-color: rgb(168, 47, 47);
 }
+
 .page_layer_container{
     position: static
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+//Creates list of buttons of equipment in the results state, also handles on click actions of these buttons
 export default function ResultList(props) {
     const {
         loading,

@@ -2,6 +2,7 @@ import React from 'react'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils'
 import { render } from '@testing-library/react'
 
+//Creates query to search for equipment by specified type, also sets the urlModifier state based on the type state
 export default function TypeSelect(props) {
     const {
         setTypeQuery,

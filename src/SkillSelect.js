@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { render } from '@testing-library/react'
 
+//Creates query to search equipment based on skills/skill levels
 export default function SkillSelect(props) {
     const
     {

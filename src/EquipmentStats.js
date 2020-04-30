@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import GetEquipmentStats from './GetEquipmentStats'
 import EquipmentDisplay from './EquipmentDisplay'
 import axios from 'axios'
-
+//Creates windows for displaying currently equipped equipment stats + window for equipped skills + last moused over equipment
+//dependant on EquipmentDisplay.js and GetEquipmentStats.js
 export default function EquipmentStats(props) {
     const {
+        slotSelect,
         equipmentDisplay,
         urlModifier,
         decos,
@@ -41,6 +43,7 @@ export default function EquipmentStats(props) {
         setSlotSelect,
     } = props
     
+    //Get all stat information from currently equipped armors from GetEquipmentStats
     const {
         t_attack,
         t_element,
@@ -65,6 +68,7 @@ export default function EquipmentStats(props) {
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
 
+    //Make changes to stats based on data from GetEquipmentStats
     useEffect(() => {
         let temp_skills = new Map();
         [...t_armorSkills.keys()].map(skill=>
@@ -96,6 +100,7 @@ export default function EquipmentStats(props) {
         setBootsSlots(t_bootsSlots)
     }, [t_defense, t_attack, t_affinity, t_element, t_elementValue, t_hidden, t_armorSkills, t_decoSkills, t_weaponSlots, t_headSlots, t_chestSlots, t_glovesSlots, t_waistSlots, t_bootsSlots])
 
+    //Removes armor that is clicked on
     function handleOnX(e)
     {
         if(e.target.value=='weapon')
@@ -114,6 +119,7 @@ export default function EquipmentStats(props) {
             setCharm('')
     }
 
+    //Selects Decorations for replacement
     function handleOnSlotSelect(e)
     {
         setSlotSelect(e.target.value)

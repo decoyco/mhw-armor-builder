@@ -1,5 +1,5 @@
 import React from 'react'
-
+//Sets name state to be filtered in App.js
 export default function NameSearch(props) {
     const {
         setName

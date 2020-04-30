@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
+//Creates query that specifies how many slots the searched equipment needs AND changes states slot1,slot2,and slot3 which specify what slot levels the user wants to filter by
 export default function SlotSelect(props) {
     const{
         slot1,

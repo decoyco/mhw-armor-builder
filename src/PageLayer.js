@@ -2,6 +2,7 @@ import React from 'react'
 import ResultList from './ResultList'
 import SearchBar from './SearchBar'
 
+//Top layer for ResultList and SearchBar
 export default function PageLayer(props) {
     const {
         slot1,

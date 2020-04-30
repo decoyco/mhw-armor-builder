@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-
+//Creates query for specified weapon element/element damage/hidden attributes
 export default function ElementSearch(props) {
     const {
         urlModifier,

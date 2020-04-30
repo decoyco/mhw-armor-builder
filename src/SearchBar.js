@@ -8,6 +8,8 @@ import ElementSearch from './ElementSearch'
 import SlotSelect from './SlotSelect'
 import { render } from '@testing-library/react'
 
+//Creates the Search window, changes depending on Type state
+//Dependent on BaseStateSearch, ElementSearch, NameSearch, RankSelect, SkillSelect, SlotSelect, and TypeSelect
 export default function SearchBar(props) {
     //props
     const {
@@ -35,6 +37,7 @@ export default function SearchBar(props) {
     const [elementQuery, setElementQuery] = useState('')
     const [slotQuery, setSlotQuery] = useState('')
 
+    //Consolidates all passed in queries into one: searchQuery state
     useEffect(() =>
     {
         const query ='{' + typeQuery + nameQuery + baseStatQuery + rankQuery + skillQuery + elementQuery + slotQuery +'}'
@@ -42,6 +45,7 @@ export default function SearchBar(props) {
         setSearchQuery(query)
     }, [typeQuery, baseStatQuery, rankQuery, nameQuery, skillQuery, elementQuery, slotQuery])
 
+    //Resets queries on change of type
     useEffect(() =>
     {
         const initQuery = (urlModifier != 'charms' && urlModifier != 'decorations') ? '"type":"' + type + '"' : '"id":{"$gte":0}'

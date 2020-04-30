@@ -1,5 +1,5 @@
 import React from 'react'
-
+//Creates window that shows the stats of the last piece of equipment that you have moused over in the results
 export default function EquipmentDisplay(props) {
     const {
         urlModifier,
@@ -9,6 +9,7 @@ export default function EquipmentDisplay(props) {
         <div class="view_equip_window">
             <h3>{equipmentDisplay.name}</h3>
             {
+                //if ARMOR display def, skills, and slots
                 (urlModifier == 'armor' && equipmentDisplay.defense) 
                 &&
                 <>
@@ -30,6 +31,7 @@ export default function EquipmentDisplay(props) {
                 </>
             }
             {
+                //if WEAPON display atk, element, and slots
                 (urlModifier == 'weapons' && equipmentDisplay.attack)
                 &&
                 <>
@@ -52,6 +54,7 @@ export default function EquipmentDisplay(props) {
                 </>
             }
             {
+                //if CHARM display skills
                 (urlModifier == 'charms' && equipmentDisplay.ranks)
                 &&
                 <div>
@@ -63,6 +66,7 @@ export default function EquipmentDisplay(props) {
                 </div>
             }
             {
+                //if DECORATION display skills
                 (urlModifier === 'decorations' && equipmentDisplay.slot)
                 &&
                 <div>

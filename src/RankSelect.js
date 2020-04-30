@@ -1,5 +1,5 @@
 import React from 'react'
-
+//Creates query to search via low, high, or master rank equipment
 export default function RankSelect(props) {
     const 
     {
