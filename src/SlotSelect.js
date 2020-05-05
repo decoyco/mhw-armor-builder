@@ -76,7 +76,7 @@ export default function SlotSelect(props) {
     }
     return (
         <>
-        <div>
+        <div class="input_row">
             <label>Slot: </label>
             <select onChange={handleChange1}>
                 <option value='0'></option>

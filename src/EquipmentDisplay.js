@@ -2,10 +2,13 @@ import React from 'react'
 //Creates window that shows the stats of the last piece of equipment that you have moused over in the results
 export default function EquipmentDisplay(props) {
     const {
+        display,
         urlModifier,
         equipmentDisplay
     } = props
     return (
+        <>
+        {display && 
         <div class="view_equip_window">
             <h3>{equipmentDisplay.name}</h3>
             {
@@ -78,5 +81,7 @@ export default function EquipmentDisplay(props) {
                 </div>
             }
         </div>
+        }
+        </>
     )
 }

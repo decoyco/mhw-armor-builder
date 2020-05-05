@@ -12,7 +12,7 @@ export default function NameSearch(props) {
     }
     return (
         <>
-        <div>
+        <div class="input_row">
             <label>Name: </label>
             <input type="text" onChange={handleOnChange}></input>
         </div>

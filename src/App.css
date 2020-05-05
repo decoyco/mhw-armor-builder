@@ -7,7 +7,29 @@
     z-index:1;
 }
 .container{
-    margin:1rem;
+    max-width: 95%;
+    margin: auto;
+    margin-bottom: 3rem;
+}
+
+.top_bar{
+    top:0rem;
+    left:0rem;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--color-window);
+}
+
+.toggle_display{
+    background-color: rgb(61, 61, 61);
+    color: white;
+    width: 3rem;
+    height:1rem;
+    font-size: 0.7rem;
+    font-weight: bold;
 }
 
 .equipped_window{
@@ -15,24 +37,24 @@
     background-color: var(--color-window);
     color: var(--color-text-window);
     position:fixed;
-    top:0.15rem;
+    top:1rem;
     right:1em;
     z-index:2;
     border-radius: 1rem;
     padding: 1.5em;
     padding-top: 0rem;
     font-weight: bold;
-    font-size:1rem;
+    font-size: 0.7rem;
     border: solid;
     border-width: thick;
     border-color:rgb(17, 17, 17);
 }
 
 .skills_window{
-    width: 12em;
+    width: 10em;
     background-color: var(--color-window);
     color: var(--color-text-window);
-    position:absolute;
+    position:fixed;
     top:-0.25rem;
     right:16em;
     z-index:2;
@@ -40,7 +62,7 @@
     padding: 1.5em;
     padding-top: 0rem;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.65rem;
     border: solid;
     border-width: thick;
     border-color:rgb(17, 17, 17);
@@ -50,14 +72,14 @@
     background-color: var(--color-window);
     color: var(--color-text-window);
     position:absolute;
-    top:-.25rem;
-    right:16rem;
+    bottom:1rem;
+    left:1rem;
     z-index:2;
     border-radius: 1rem;
     padding: 1.5em;
     padding-top: 0rem;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 0.65rem;
     border: solid;
     border-width: thick;
     border-color:rgb(17, 17, 17);
@@ -66,9 +88,10 @@
 .equip_armor_button{
     border-radius: 0.25rem;
     border-width: 0.5px;
-    padding: 0.25rem;
+    padding: 0rem;
     margin: 0.25em;
     font-weight: bold;
+    font-size: 0.65rem;
     background-color: gray;
     color: var(--color-text-window);
 }
@@ -81,15 +104,18 @@
 }
 
 .result_window{
-    position:absolute;
-    top:23rem;
-    left:2rem;
+    position: absolute;
+    top: 19rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
 }
 .result_button{
+    max-width:95%;
     border-radius: 0.25rem;
     border-width: 0.5px;
     padding: 0.5rem;
-    width: 30em;
+    width: 25em;
     margin: 0.25rem;
     background-color: var(--color-window);
     color: var(--color-text-window);
@@ -101,6 +127,8 @@
 }
 
 .search_window{
+    width: 45rem;
+    max-width: 80%;
     margin: .5rem;
     color: var(--color-base);
     background-color: var(--color-text-base);
@@ -108,14 +136,17 @@
     padding: 1rem;
     padding-top: 0.05rem;
     position:absolute;
+    display:flex;
+    flex-direction: column;
 }
 
 select{
-    padding:0.1em;
+    padding-left: 0.1rem;
+    padding: 0;
     border-radius: .25rem;
     background-color: var(--color-base);
     color: var(--color-text-base);
-    font-size: 17px;
+    font-size: 12px;
 }
 label{
     padding:0.1em;
@@ -123,10 +154,17 @@ label{
     font-size: 20px;
 }
 input{
-    padding:0.1em;
+    padding: 0;
+    padding-left: 0.1rem;
     border-radius: .25rem;
-    font-size: 17px;
+    font-size: 12px;
     background-color: var(--color-base);
     color: var(--color-text-base);
+}
+
+.input_row{
+    display:flex;
+    margin: 0.1rem;
+    width:100%;
 }
 

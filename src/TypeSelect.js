@@ -44,8 +44,9 @@ export default function TypeSelect(props) {
     }
     return (
         <>
+        <div class="input_row">
         <label>Type: </label>
-        <select onChange={handleOnChange} >
+        <select onChange={handleOnChange} size="2">
             <option  value="head">Head</option>
             <option  value="chest">Chest</option>
             <option  value="gloves">Gloves</option>
@@ -68,6 +69,7 @@ export default function TypeSelect(props) {
             <option  value="charm">Charm</option>
             <option  value="decoration">Decorations</option>
         </select>
+        </div>
         </>
     )
 }

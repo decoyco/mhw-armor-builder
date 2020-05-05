@@ -6,6 +6,7 @@ import NameSearch from './NameSearch'
 import SkillSelect from './SkillSelect'
 import ElementSearch from './ElementSearch'
 import SlotSelect from './SlotSelect'
+import ResultList from './ResultList'
 import { render } from '@testing-library/react'
 
 //Creates the Search window, changes depending on Type state
@@ -13,17 +14,35 @@ import { render } from '@testing-library/react'
 export default function SearchBar(props) {
     //props
     const {
+        loading,
+        decos,
+        weaponSlots,
+        headSlots,
+        chestSlots,
+        glovesSlots,
+        waistSlots,
+        bootsSlots,
+        slotSelect,
+        type,
+        results,
+        setHead,
+        setChest,
+        setGloves,
+        setWaist,
+        setBoots,
+        setWeapon,
+        setCharm,
+        setEquipmentDisplay,
+        setDecos,
         slot1,
         slot2,
         slot3,
-        type,
         dbSkills,
         urlModifier,
         setType, 
         setUrlModifier,
         setSearchQuery,
         setName,
-        setEquipmentDisplay,
         setSlot1,
         setSlot2,
         setSlot3,
@@ -74,7 +93,29 @@ export default function SearchBar(props) {
             <SlotSelect slot1={slot1} slot2={slot2} slot3={slot3} setSlot1={setSlot1} setSlot2={setSlot2} setSlot3={setSlot3} setSlotQuery={setSlotQuery}/>}
             {(urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>}
             {urlModifier=='weapons' && <ElementSearch urlModifier={urlModifier} setElementQuery={setElementQuery}/>}
-            
+            <ResultList 
+            loading={loading}
+            decos={decos}
+            weaponSlots={weaponSlots}
+            headSlots={headSlots}
+            chestSlots={chestSlots}
+            glovesSlots={glovesSlots}
+            waistSlots={waistSlots}
+            bootsSlots={bootsSlots}
+            slotSelect={slotSelect}
+            urlModifier={urlModifier}
+            type={type}
+            results={results} 
+            setHead={setHead}
+            setChest={setChest}
+            setGloves={setGloves}
+            setWaist={setWaist}
+            setBoots={setBoots}
+            setWeapon={setWeapon}
+            setCharm={setCharm}
+            setEquipmentDisplay={setEquipmentDisplay}
+            setDecos={setDecos}
+        />
         </div>
         </>
     )

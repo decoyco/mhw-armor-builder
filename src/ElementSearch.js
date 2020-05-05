@@ -34,7 +34,7 @@ export default function ElementSearch(props) {
 
     return (
         <>
-        <div>
+        <div class="input_row">
             <label>Element:</label>
             <select onChange={handleElementChange}>
                 <option value=""></option>

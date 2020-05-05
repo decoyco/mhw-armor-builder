@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import PageLayer from './PageLayer'
 import EquipmentStats from './EquipmentStats'
 import axios from 'axios'
 import { render } from '@testing-library/react';
+import SearchBar from './SearchBar';
 
 function App() {
   const BASE_URL = 'https://mhw-db.com/'
@@ -35,6 +35,7 @@ function App() {
   const [slot1, setSlot1] = useState(0)
   const [slot2, setSlot2] = useState(0)
   const [slot3, setSlot3] = useState(0)
+  
   
   //On load
   useEffect(() =>
@@ -151,7 +152,7 @@ function App() {
         setSlotSelect={setSlotSelect}
         setDecos={setDecos}
       />
-      <PageLayer 
+      <SearchBar
         slot1={slot1}
         slot2={slot2}
         slot3={slot3}

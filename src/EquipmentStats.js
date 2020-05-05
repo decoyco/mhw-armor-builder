@@ -67,6 +67,7 @@ export default function EquipmentStats(props) {
     const [hidden, setHidden] = useState(false)
     const [defense, setDefense] = useState(0)
     const [affinity, setAffinity] = useState(0)
+    const [display, setDisplay] = useState(false)
 
     //Make changes to stats based on data from GetEquipmentStats
     useEffect(() => {
@@ -125,8 +126,18 @@ export default function EquipmentStats(props) {
         setSlotSelect(e.target.value)
     }
 
+    //Toggles Displaying the Equipment menu
+    function handleOnToggle()
+    {
+        setDisplay(!display)
+    }
+
     return (
         <>
+        <div class="top_bar">
+            <button class="toggle_display" onClick={handleOnToggle}>STATS</button>
+        </div>
+        {display && 
         <div class="equipped_window">
             <h2>Equipped</h2>
             <div>
@@ -211,15 +222,18 @@ export default function EquipmentStats(props) {
                 (
                     <li key={skill}>{skill} : {skills.get(skill)}</li>
                 ))}
-                {
+                
+            </div>
+        </div>
+        }
+        {
                 equipmentDisplay == '' ? <div></div> :
                 <EquipmentDisplay 
+                display={display}
                 urlModifier={urlModifier}
                 equipmentDisplay={equipmentDisplay}
                 />
-                }
-            </div>
-        </div>
+        }
         </>
     )
 }

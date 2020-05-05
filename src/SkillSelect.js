@@ -35,9 +35,9 @@ export default function SkillSelect(props) {
 
     return (
         <>
-            <div>
+            <div class="input_row">
             <label>Skill: </label>
-            <select onChange={handleSkillChange}>
+            <select onChange={handleSkillChange} size="3">
                 <option value="" selected="true"></option>
                 {
                 dbSkills.map(skill =>
