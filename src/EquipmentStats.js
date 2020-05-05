@@ -135,7 +135,7 @@ export default function EquipmentStats(props) {
     return (
         <>
         <div class="top_bar">
-            <button class="toggle_display" onClick={handleOnToggle}>STATS</button>
+            <button class="toggle_display" onClick={handleOnToggle}>{display ? "HIDE STATS" : "DISPLAY STATS"}</button>
         </div>
         {display && 
         <div class="equipped_window">

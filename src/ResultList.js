@@ -98,7 +98,7 @@ export default function ResultList(props) {
         <>
         <div class="result_window">
             {
-                loading ? <label>Loading...</label> :
+                results == "" ? <label>No results found</label> :
                 results.map(equipment =>
                 (
                     <div key={equipment.id}>

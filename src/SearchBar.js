@@ -93,6 +93,7 @@ export default function SearchBar(props) {
             <SlotSelect slot1={slot1} slot2={slot2} slot3={slot3} setSlot1={setSlot1} setSlot2={setSlot2} setSlot3={setSlot3} setSlotQuery={setSlotQuery}/>}
             {(urlModifier=='armor' || urlModifier=='weapons') && <BaseStatSearch urlModifier={urlModifier} setBaseStatQuery={setBaseStatQuery}/>}
             {urlModifier=='weapons' && <ElementSearch urlModifier={urlModifier} setElementQuery={setElementQuery}/>}
+            {loading ? <div>Loading...</div> :
             <ResultList 
             loading={loading}
             decos={decos}
@@ -115,7 +116,8 @@ export default function SearchBar(props) {
             setCharm={setCharm}
             setEquipmentDisplay={setEquipmentDisplay}
             setDecos={setDecos}
-        />
+            />
+            }
         </div>
         </>
     )
